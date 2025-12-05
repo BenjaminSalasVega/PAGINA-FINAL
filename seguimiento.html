@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seguimiento de pedido — Viña Urbana</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Estilos específicos de seguimiento -->
+  <style>
+    .order-page {
+      padding: 32px 0 40px;
+    }
+    .order-header {
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .order-breadcrumb {
+      font-size:.8rem;
+      color:var(--text-muted);
+    }
+    .order-breadcrumb a {
+      color:var(--text-muted);
+      text-decoration:none;
+    }
+    .order-breadcrumb a:hover {
+      color:#e5e7eb;
+    }
+    .order-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.8fr) minmax(0,1.4fr);
+      gap:20px;
+    }
+    .order-meta {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 16px;
+      font-size:.8rem;
+      margin-top:4px;
+      color:var(--text-muted);
+    }
+    .order-meta span strong {
+      color:#e5e7eb;
+    }
+    .order-progress {
+      margin-top:10px;
+    }
+    .progress-bar {
+      position:relative;
+      height:6px;
+      border-radius:999px;
+      background:rgba(30,64,175,.7);
+      overflow:hidden;
+      margin-bottom:8px;
+    }
+    .progress-bar-fill {
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:0%;
+      background:linear-gradient(90deg,#f97316,#e11d48);
+      transition:width .3s ease-out;
+    }
+    .order-steps {
+      display:flex;
+      justify-content:space-between;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      color:var(--text-muted);
+    }
+
+    .order-map img {
+      width:100%;
+      border-radius:20px;
+      object-fit:cover;
+    }
+    .order-map small {
+      display:block;
+      margin-top:6px;
+      font-size:.75rem;
+      color:var(--text-muted);
+    }
+
+    .order-products {
+      margin-top:12px;
+    }
+    .order-products-list {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:6px;
+    }
+    .order-product-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:8px 6px;
+      border-radius:16px;
+      background:rgba(15,23,42,.95);
+      border:1px solid rgba(30,64,175,.4);
+      font-size:.8rem;
+    }
+    .order-product-main {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      min-width:0;
+    }
+    .order-product-thumb {
+      width:52px;
+      height:52px;
+      border-radius:15px;
+      object-fit:cover;
+      border:1px solid rgba(148,163,184,.7);
+    }
+    .order-product-info h3 {
+      margin:0;
+      font-size:.85rem;
+    }
+    .order-product-info p {
+      margin:2px 0 0;
+      font-size:.75rem;
+      color:var(--text-muted);
+    }
+    .order-product-qty {
+      min-width:80px;
+      text-align:right;
+    }
+
+    .order-side-section {
+      margin-top:10px;
+      font-size:.8rem;
+      color:var(--text-muted);
+    }
+    .order-side-section h3 {
+      font-size:.9rem;
+      margin:0 0 4px;
+      color:#e5e7eb;
+    }
+
+    .order-delivery-photo img {
+      width:100%;
+      border-radius:20px;
+      object-fit:cover;
+    }
+    .order-delivery-photo small {
+      display:block;
+      margin-top:6px;
+      font-size:.75rem;
+      color:var(--text-muted);
+    }
+
+    @media (max-width:960px) {
+      .order-layout {
+        grid-template-columns:minmax(0,1fr);
+      }
+    }
+  </style>
+</head>
+<body class="theme-dark">
+  <!-- AVISO -->
+  <div class="announce">
+    <span>ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000</span>
+    <small>• 24–48h hábiles</small>
+    <div class="social">
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav glass">
+    <div class="container nav-row">
+      <a class="logo" href="index3.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+
+  <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
+      <div class="icons">
+        <a class="icon" href="buscar.html" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="2"/>
+            <path d="M20 20l-3.2-3.2" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="cuenta.html" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4" stroke-width="2"/>
+            <path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="carrito.html" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/>
+          </svg>
+        </a>
+        <span class="badge cart" title="Productos en carrito" data-cart-count>0</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO -->
+  <main class="container order-page">
+    <header class="order-header">
+      <div>
+        <div class="order-breadcrumb">
+          <a href="index.html">Inicio</a> ·
+          <a href="carrito.html">Carrito</a> ·
+          <span>Seguimiento</span>
+        </div>
+        <h1 class="h1" style="margin-top:4px">Seguimiento de tu pedido</h1>
+        <p class="subtitle" id="order-subtitle">
+          Cargando información de tu pedido…
+        </p>
+      </div>
+      <button class="btn ghost" type="button" onclick="window.location.href='carrito.html'">
+        Volver al carrito
+      </button>
+    </header>
+
+    <div class="order-layout">
+      <!-- Columna izquierda: estado + mapa + productos -->
+      <section class="card pad">
+        <h2 class="section-title">Estado del pedido</h2>
+        <div class="order-meta">
+          <span>ID: <strong>#<span id="order-id">—</span></strong></span>
+          <span>Total: <strong>$ <span id="order-total">0</span></strong></span>
+          <span>Entrega estimada: <strong><span id="order-eta">—</span></strong></span>
+        </div>
+
+        <div class="order-progress">
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <div class="order-steps">
+            <span>Recibido</span>
+            <span>Preparando</span>
+            <span>En camino</span>
+            <span>Entregado</span>
+          </div>
+        </div>
+
+        <!-- Timeline detallado (reusa estilos .track-steps si los tienes) -->
+        <ol class="track-steps" style="margin-top:10px">
+          <li id="step-1">Pedido recibido por Viña Urbana</li>
+          <li id="step-2">Preparando tu selección en bodega</li>
+          <li id="step-3">Pedido en ruta con el transportista</li>
+          <li id="step-4">Entrega en tu domicilio</li>
+        </ol>
+
+        <div class="order-map card pad" style="margin-top:12px">
+          <h3 class="section-title" style="margin-bottom:6px">Recorrido</h3>
+          <img
+            src="https://images.pexels.com/photos/17500379/pexels-photo-17500379.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Mapa de navegación en un smartphone">
+          <small>
+            Mapa referencial del recorrido desde nuestra bodega hasta tu dirección de entrega.
+          </small>
+        </div>
+
+        <!-- Productos -->
+        <section class="order-products">
+          <h3 class="section-title">Productos de este pedido</h3>
+          <p class="subtitle" id="order-products-msg" style="margin-bottom:4px">
+            Cargando detalle de productos…
+          </p>
+          <div id="order-products-list" class="order-products-list"></div>
+        </section>
+      </section>
+
+      <!-- Columna derecha: info adicional -->
+      <aside>
+        <section class="card pad order-side-section">
+          <h3>Datos de envío</h3>
+          <p id="order-shipping-text">
+            Estaremos utilizando la dirección que registres en la etapa de pago.  
+            Si necesitas cambiarla, contáctanos indicando tu número de pedido.
+          </p>
+        </section>
+
+        <section class="card pad order-side-section order-delivery-photo">
+          <h3>Entrega en tu puerta</h3>
+          <img
+            src="https://images.pexels.com/photos/7362965/pexels-photo-7362965.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Repartidor entregando un paquete en la puerta">
+          <small>
+            Nuestros repartidores te contactarán antes de llegar para coordinar la entrega.
+          </small>
+        </section>
+
+        <section class="card pad order-side-section">
+          <h3>Ayuda rápida</h3>
+          <p style="margin-bottom:6px">
+            ¿Tienes dudas sobre tu pedido?
+          </p>
+          <ul style="margin:0;padding-left:18px;font-size:.78rem">
+            <li>Revisa el correo de confirmación con el detalle de tu compra.</li>
+            <li>Si ves algún dato incorrecto, escríbenos indicando el ID del pedido.</li>
+            <li>Para cambios o devoluciones, revisa nuestras políticas en el sitio.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container footer">
+    <div class="links">
+      <a href="politicas.html">Políticas</a>
+      <a href="devoluciones.html">Devoluciones</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="tiendas.html">Tiendas</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="demanda.html">Demanda</a>
+      <a href="etiqueta-carbono.html">Etiqueta CO₂</a>
+      <a href="donaciones.html">Donaciones</a>
+      <a href="vinedos-virtual.html">Viñedos VR</a>
+      <a href="maridaje-etiqueta.html">Maridaje AR</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Viña Urbana</span>
+      <span class="footer-badge">+18 | Consume con moderación</span>
+    </div>
+  </footer>
+
+  <!-- LÓGICA DE SEGUIMIENTO -->
+  <script>
+  (function () {
+    // mismo catálogo que en carrito, para mostrar fotos y valores
+    const catalog = [
+      { id:'p01', name:'Reserva Especial 2016', price:9690,  cepa:'Cabernet Sauvignon', year:2016,
+        img:'https://images.pexels.com/photos/1087927/pexels-photo-1087927.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p02', name:'Reserva Especial 2017', price:10390, cepa:'Sauvignon Blanc',   year:2017,
+        img:'https://images.pexels.com/photos/16526849/pexels-photo-16526849.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p03', name:'Reserva Especial 2018', price:11090, cepa:'Cabernet Sauvignon',year:2018,
+        img:'https://images.pexels.com/photos/1407857/pexels-photo-1407857.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p04', name:'Reserva Especial 2019', price:11790, cepa:'Sauvignon Blanc',   year:2019,
+        img:'https://images.pexels.com/photos/14799842/pexels-photo-14799842.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p05', name:'Reserva Especial 2020', price:12490, cepa:'Cabernet Sauvignon',year:2020,
+        img:'https://images.pexels.com/photos/3642533/pexels-photo-3642533.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p06', name:'Reserva Especial 2021', price:13190, cepa:'Sauvignon Blanc',   year:2021,
+        img:'https://images.pexels.com/photos/19030980/pexels-photo-19030980.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p07', name:'Reserva Especial 2022', price:13890, cepa:'Cabernet Sauvignon',year:2022,
+        img:'https://images.pexels.com/photos/2147791/pexels-photo-2147791.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p08', name:'Reserva Especial 2023', price:14590, cepa:'Sauvignon Blanc',   year:2023,
+        img:'https://images.pexels.com/photos/10012572/pexels-photo-10012572.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p09', name:'Reserva Especial 2024', price:15290, cepa:'Cabernet Sauvignon',year:2024,
+        img:'https://images.pexels.com/photos/5531553/pexels-photo-5531553.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p10', name:'Reserva Especial 2025', price:15990, cepa:'Sauvignon Blanc',   year:2025,
+        img:'https://images.pexels.com/photos/34926023/pexels-photo-34926023.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p11', name:'Reserva Especial 2026', price:16690, cepa:'Cabernet Sauvignon',year:2026,
+        img:'https://images.pexels.com/photos/2148053/pexels-photo-2148053.jpeg?auto=compress&cs=tinysrgb&w=600' },
+      { id:'p12', name:'Reserva Especial 2027', price:17390, cepa:'Sauvignon Blanc',   year:2027,
+        img:'https://images.pexels.com/photos/15809237/pexels-photo-15809237.jpeg?auto=compress&cs=tinysrgb&w=600' }
+    ];
+
+    const orderRaw = localStorage.getItem('vu_last_order');
+    const subtitleEl = document.getElementById('order-subtitle');
+    const idEl = document.getElementById('order-id');
+    const totalEl = document.getElementById('order-total');
+    const etaEl = document.getElementById('order-eta');
+    const fillEl = document.getElementById('progress-fill');
+
+    const steps = [
+      document.getElementById('step-1'),
+      document.getElementById('step-2'),
+      document.getElementById('step-3'),
+      document.getElementById('step-4')
+    ];
+
+    const productsMsgEl = document.getElementById('order-products-msg');
+    const productsListEl = document.getElementById('order-products-list');
+
+    if (!orderRaw) {
+      subtitleEl.textContent = 'No encontramos un pedido en seguimiento. Revisa tu carrito o realiza una nueva compra.';
+      return;
+    }
+
+    const order = JSON.parse(orderRaw);
+    const currentStep = order.currentStep || 1;
+
+    idEl.textContent = order.id || '—';
+    totalEl.textContent = (order.total || 0).toLocaleString('es-CL');
+    etaEl.textContent = order.eta || '24–48 horas hábiles';
+    subtitleEl.textContent = 'Puedes seguir en tiempo real el avance de tu pedido.';
+
+    // barra de progreso (4 pasos)
+    const percent = (currentStep - 1) / 3 * 100;
+    fillEl.style.width = percent + '%';
+
+    // marcar pasos
+    steps.forEach((li, idx) => {
+      li.classList.remove('is-done', 'is-active');
+      const stepNumber = idx + 1;
+      if (stepNumber < currentStep) li.classList.add('is-done');
+      if (stepNumber === currentStep) li.classList.add('is-active');
+    });
+
+    // intentar reconstruir productos desde vu_cart
+    const cartRaw = localStorage.getItem('vu_cart');
+    if (!cartRaw) {
+      productsMsgEl.textContent = 'No pudimos recuperar el detalle de productos. Solo se muestra el total.';
+      return;
+    }
+
+    const rawArray = JSON.parse(cartRaw || '[]');
+    const map = new Map();
+    rawArray.forEach(entry => {
+      let id, qty;
+      if (typeof entry === 'string') { id = entry; qty = 1; }
+      else if (entry && entry.id)   { id = entry.id; qty = entry.qty || 1; }
+      if (!id) return;
+      const cur = map.get(id) || 0;
+      map.set(id, cur + qty);
+    });
+
+    const lines = Array.from(map.entries()).map(([id, qty]) => ({id, qty}));
+    if (!lines.length) {
+      productsMsgEl.textContent = 'No hay productos asociados al carrito actual.';
+      return;
+    }
+
+    productsMsgEl.textContent = '';
+    productsListEl.innerHTML = '';
+
+    lines.forEach(line => {
+      const p = catalog.find(c => c.id === line.id);
+      if (!p) return;
+      const row = document.createElement('div');
+      row.className = 'order-product-row';
+      const lineTotal = p.price * line.qty;
+
+      row.innerHTML = `
+        <div class="order-product-main">
+          <img class="order-product-thumb" src="${p.img}" alt="${p.name}">
+          <div class="order-product-info">
+            <h3>${p.name}</h3>
+            <p>${p.cepa} • ${p.year}</p>
+          </div>
+        </div>
+        <div class="order-product-qty">
+          x${line.qty}<br>
+          $ ${lineTotal.toLocaleString('es-CL')}
+        </div>
+      `;
+      productsListEl.appendChild(row);
+    });
+  })();
+  </script>
+
+  <script src="scripts.js"></script>
+  <script>try{runSearch();}catch(e){}</script>
+</body>
+</html>

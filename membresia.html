@@ -8,43 +8,517 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .memb-page {
+      padding: 32px 0 40px;
+    }
+    .memb-header {
+      margin-bottom: 18px;
+    }
+    .memb-header .subtitle {
+      margin-top: 4px;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .memb-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+    .memb-hero-main {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 18px 18px 18px;
+      background: radial-gradient(circle at top left, rgba(129, 140, 248, .35), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(248, 113, 113, .28), transparent 55%),
+                  rgba(15, 23, 42, .95);
+      border: 1px solid rgba(148, 163, 184, .6);
+    }
+    .memb-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, .9);
+      border: 1px solid rgba(129, 140, 248, .9);
+      font-size: .72rem;
+      margin-bottom: 8px;
+    }
+    .memb-hero-badge span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+    .memb-hero h1 {
+      margin: 0 0 6px;
+    }
+    .memb-hero p {
+      margin: 0 0 10px;
+      font-size: .86rem;
+      color: var(--text-muted);
+    }
+    .memb-hero-list {
+      margin: 6px 0 10px;
+      padding-left: 18px;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .memb-hero-list li {
+      margin-bottom: 3px;
+    }
+    .memb-hero-secondary {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, .6);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, .4), rgba(15, 23, 42, .98));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .memb-hero-secondary img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+    .memb-hero-secondary small {
+      display: block;
+      padding: 8px 10px;
+      font-size: .76rem;
+      color: var(--text-muted);
+    }
+
+    /* Planes */
+    .plans-section {
+      margin-bottom: 18px;
+    }
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .plan-card {
+      border-radius: 22px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(30, 64, 175, .7);
+      background: linear-gradient(145deg, rgba(15, 23, 42, .96), rgba(15, 23, 42, .98));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: .83rem;
+    }
+    .plan-card.highlight {
+      border-color: rgba(129, 140, 248, 1);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, .3);
+      background: radial-gradient(circle at top, rgba(30, 64, 175, .45), rgba(15, 23, 42, .98));
+      position: relative;
+    }
+    .plan-card-selected {
+      border-color: rgba(52, 211, 153, .9);
+      box-shadow: 0 0 0 1px rgba(52, 211, 153, .4);
+    }
+    .plan-label {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .plan-title {
+      font-size: .94rem;
+      margin: 0 0 6px;
+    }
+    .plan-price {
+      font-size: .9rem;
+      margin-bottom: 2px;
+    }
+    .plan-price small {
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+    .plan-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: .72rem;
+      border: 1px solid rgba(148, 163, 184, .7);
+      color: #e5e7eb;
+      margin-bottom: 6px;
+    }
+    .plan-chip.best {
+      border-color: rgba(245, 158, 11, .9);
+      color: #fed7aa;
+    }
+    .plan-list {
+      margin: 0 0 8px;
+      padding-left: 16px;
+    }
+    .plan-list li {
+      margin-bottom: 3px;
+    }
+    .plan-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .plan-footer small {
+      font-size: .74rem;
+      color: var(--text-muted);
+    }
+
+    /* Resumen */
+    .memb-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 18px;
+      font-size: .83rem;
+    }
+    .memb-summary p {
+      margin: 0 0 6px;
+    }
+    .memb-summary strong {
+      font-weight: 600;
+    }
+    .memb-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, .8);
+      font-size: .72rem;
+      margin-top: 4px;
+    }
+    .memb-tag.active {
+      border-color: rgba(52, 211, 153, .9);
+      color: #bbf7d0;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 1);
+      border: 1px solid rgba(30, 64, 175, .7);
+      overflow: hidden;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      width: 0%;
+      transition: width .3s ease;
+    }
+
+    .memb-points-form label {
+      display: block;
+      font-size: .8rem;
+      margin-bottom: 4px;
+    }
+    .memb-points-form input {
+      width: 100%;
+    }
+    .memb-points-note {
+      font-size: .74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .memb-points-msg {
+      margin-top: 6px;
+      font-size: .78rem;
+      color: #bbf7d0;
+    }
+
+    @media (max-width: 960px) {
+      .memb-hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .plans-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .memb-summary {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO SUPERIOR -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
-      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
-      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAVBAR -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
+      <a class="logo" href="index.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+
       <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html" class="active">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+      </div>
+
       <div class="icons">
-        <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
-        <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
-        <a class="icon" href="carrito.html" aria-label="Carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/></svg></a>
+        <a class="icon" href="buscar.html" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="2"/>
+            <path d="M20 20l-3.2-3.2" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="cuenta.html" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4" stroke-width="2"/>
+            <path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="carrito.html" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/>
+          </svg>
+        </a>
         <span class="badge cart" title="Productos en carrito" data-cart-count>0</span>
       </div>
     </div>
   </nav>
 
-  <main class='container' style='padding:34px 0'><h1 class='h1 reveal'>Membresía</h1><div class='card pad reveal'><p>Contenido próximamente.</p></div></main>
+  <!-- CONTENIDO -->
+  <main class="container memb-page">
+    <header class="memb-header">
+      <h1 class="h1 reveal">Club Viña Urbana</h1>
+      <p class="subtitle">
+        Elige tu membresía, acumula puntos con cada compra y recibe acceso anticipado a lanzamientos, degustaciones
+        y beneficios exclusivos.
+      </p>
+    </header>
 
+    <!-- Hero -->
+    <section class="memb-hero">
+      <article class="memb-hero-main reveal">
+        <div class="memb-hero-badge">
+          <span></span>
+          Nuevo programa 2025 · Demo
+        </div>
+        <h2 class="h2" style="margin:0 0 4px;">Tu experiencia de vino, llevada a nivel club</h2>
+        <p>
+          Tres niveles de membresía pensados para distintos tipos de amantes del vino: desde quien parte explorando,
+          hasta quien quiere acceso a cosechas limitadas y eventos privados.
+        </p>
+        <ul class="memb-hero-list">
+          <li>Acumulación de puntos canjeables en tienda online.</li>
+          <li>Descuentos permanentes según tu plan activo.</li>
+          <li>Contenido educativo y degustaciones guiadas (demo).</li>
+        </ul>
+        <button class="btn primary" type="button" onclick="document.getElementById('plans-section').scrollIntoView({behavior:'smooth'})">
+          Ver planes disponibles
+        </button>
+      </article>
+
+      <aside class="memb-hero-secondary reveal">
+        <img
+          src="https://images.pexels.com/photos/1407855/pexels-photo-1407855.jpeg?auto=compress&cs=tinysrgb&w=1200"
+          alt="Copa de vino y botella sobre mesa elegante"
+        >
+        <small>
+          Imagen referencial. En un entorno productivo, el Club Viña Urbana podría incluir una sección con tu próxima
+          caja de vinos recomendada según tu historial de compra.
+        </small>
+      </aside>
+    </section>
+
+    <!-- Planes -->
+    <section id="plans-section" class="plans-section">
+      <h2 class="h2 reveal" style="margin-bottom:8px;">Planes de membresía</h2>
+      <p class="subtitle" style="margin-bottom:10px;">
+        Todos los planes incluyen acumulación de puntos, newsletter y acceso a preventas. Los beneficios se aplican a tu
+        cuenta cuando eliges un plan (guardado en esta demo usando <code>localStorage</code>).
+      </p>
+
+      <div class="plans-grid">
+        <!-- Plan 1 -->
+        <article class="plan-card reveal" data-plan-id="urbana-bronce">
+          <div>
+            <div class="plan-label">Nivel inicial</div>
+            <h3 class="plan-title">Urbana Bronce</h3>
+            <div class="plan-price">$ 0 / mes <small>· Sin costo fijo</small></div>
+            <div class="plan-chip">Hasta 5% dcto. según campaña</div>
+            <ul class="plan-list">
+              <li>1 punto por cada $1.000 en compras.</li>
+              <li>Acceso a ofertas y packs seleccionados.</li>
+              <li>Recordatorios de reposición y contenido básico.</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button
+              type="button"
+              class="btn ghost m-plan-btn"
+              data-plan-id="urbana-bronce"
+              data-plan-name="Urbana Bronce"
+              data-plan-price="0"
+            >
+              Elegir Bronce
+            </button>
+            <small>Ideal si estás comenzando en el mundo del vino.</small>
+          </div>
+        </article>
+
+        <!-- Plan 2 destacado -->
+        <article class="plan-card highlight reveal" data-plan-id="urbana-oro">
+          <div>
+            <div class="plan-label">Más elegido</div>
+            <h3 class="plan-title">Urbana Oro</h3>
+            <div class="plan-price">$ 7.990 / mes <small>· Demo</small></div>
+            <div class="plan-chip best">Hasta 15% dcto. + beneficios extra</div>
+            <ul class="plan-list">
+              <li>3 puntos por cada $1.000 en compras.</li>
+              <li>Descuento permanente en catálogo seleccionado.</li>
+              <li>Acceso anticipado a lanzamientos y catas en línea.</li>
+              <li>Despacho preferente en RM (según condiciones).</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button
+              type="button"
+              class="btn primary m-plan-btn"
+              data-plan-id="urbana-oro"
+              data-plan-name="Urbana Oro"
+              data-plan-price="7990"
+            >
+              Elegir Oro
+            </button>
+            <small>Perfecto si compras vino al menos 1 vez al mes.</small>
+          </div>
+        </article>
+
+        <!-- Plan 3 -->
+        <article class="plan-card reveal" data-plan-id="urbana-gran-reserva">
+          <div>
+            <div class="plan-label">Nivel alto</div>
+            <h3 class="plan-title">Gran Reserva</h3>
+            <div class="plan-price">$ 14.990 / mes <small>· Demo</small></div>
+            <div class="plan-chip">Hasta 20% dcto. + eventos</div>
+            <ul class="plan-list">
+              <li>4 puntos por cada $1.000 en compras.</li>
+              <li>Selecciones especiales y ediciones limitadas.</li>
+              <li>Invitaciones a degustaciones presenciales (demo).</li>
+              <li>Atención prioritaria en postventa y recomendaciones.</li>
+            </ul>
+          </div>
+          <div class="plan-footer">
+            <button
+              type="button"
+              class="btn ghost m-plan-btn"
+              data-plan-id="urbana-gran-reserva"
+              data-plan-name="Gran Reserva"
+              data-plan-price="14990"
+            >
+              Elegir Gran Reserva
+            </button>
+            <small>Para quienes quieren llevar el club al máximo nivel.</small>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Resumen y simulador -->
+    <section class="memb-summary">
+      <!-- Resumen de plan -->
+      <article class="card pad reveal">
+        <h2 class="section-title">Tu membresía (demo)</h2>
+        <p id="memb-current-plan">
+          Actualmente no tienes un plan guardado. Elige uno arriba para simular cómo quedaría asociado a tu cuenta.
+        </p>
+        <p id="memb-current-price"></p>
+        <span id="memb-tag" class="memb-tag" style="display:none;"></span>
+
+        <div style="margin-top:10px;">
+          <p><strong>Puntos acumulados estimados</strong></p>
+          <div class="progress-bar">
+            <div id="memb-progress" class="progress-fill"></div>
+          </div>
+          <p id="memb-current-points">Puntos acumulados: 0 pts.</p>
+          <p class="memb-points-note">
+            Meta demostrativa: 1.000 puntos = caja de 6 botellas en catálogo seleccionado (no real).
+          </p>
+        </div>
+      </article>
+
+      <!-- Simulador de puntos -->
+      <article class="card pad reveal">
+        <h2 class="section-title">Simular acumulación de puntos</h2>
+        <p style="font-size:.8rem; color:var(--text-muted);">
+          Ingresa un monto de compra para ver cuántos puntos sumarías con tu plan actual. Esta lógica es solo de ejemplo;
+          en un sistema real se calcularía en backend.
+        </p>
+
+        <form id="memb-points-form" class="memb-points-form" style="margin-top:8px;">
+          <label>Monto de compra (CLP)
+            <input id="memb-purchase" type="number" min="0" placeholder="Ej: 35000">
+          </label>
+          <p class="memb-points-note">
+            Reglas demo: Bronce = 1 pto / $1.000 · Oro = 3 ptos / $1.000 · Gran Reserva = 4 ptos / $1.000.
+          </p>
+          <button class="btn ghost" type="submit" style="margin-top:6px;">Simular suma de puntos</button>
+        </form>
+        <p id="memb-points-msg" class="memb-points-msg"></p>
+
+        <p style="margin-top:10px;font-size:.75rem;color:var(--text-muted);">
+          Nota: toda la información mostrada aquí es demostrativa. No se realiza ningún cobro real ni suscripción,
+          y los datos se almacenan solo en tu navegador usando <code>localStorage</code>.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -58,9 +532,147 @@
       <a href="vinedos-virtual.html">Viñedos VR</a>
       <a href="maridaje-etiqueta.html">Maridaje AR</a>
     </div>
-    <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Viña Urbana</span>
+      <span class="footer-badge">+18 | Consume con moderación</span>
+    </div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try { runSearch(); } catch (e) {}
+
+    const MEMB_PLAN_KEY = 'vu_membership_plan';
+    const MEMB_POINTS_KEY = 'vu_membership_points';
+
+    function loadPlan() {
+      try {
+        const raw = localStorage.getItem(MEMB_PLAN_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { 
+        return null; 
+      }
+    }
+
+    function savePlan(plan) {
+      localStorage.setItem(MEMB_PLAN_KEY, JSON.stringify(plan));
+    }
+
+    function loadPoints() {
+      try {
+        const raw = localStorage.getItem(MEMB_POINTS_KEY);
+        return raw ? Number(raw) : 0;
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function savePoints(pts) {
+      localStorage.setItem(MEMB_POINTS_KEY, String(pts));
+    }
+
+    function factorForPlan(planId) {
+      if (planId === 'urbana-oro') return 3;
+      if (planId === 'urbana-gran-reserva') return 4;
+      return 1; // Bronce o sin plan
+    }
+
+    function updatePlanUI() {
+      const plan = loadPlan();
+      const points = loadPoints();
+
+      const planText   = document.getElementById('memb-current-plan');
+      const priceText  = document.getElementById('memb-current-price');
+      const tagEl      = document.getElementById('memb-tag');
+      const pointsText = document.getElementById('memb-current-points');
+      const progress   = document.getElementById('memb-progress');
+
+      // Quitar selección visual de todas las tarjetas
+      document.querySelectorAll('.plan-card').forEach(card => {
+        card.classList.remove('plan-card-selected');
+      });
+
+      if (!plan) {
+        planText.textContent = 'Actualmente no tienes un plan guardado. Elige uno arriba para simular cómo quedaría asociado a tu cuenta.';
+        priceText.textContent = '';
+        tagEl.style.display = 'none';
+      } else {
+        planText.textContent = `Plan activo (demo): ${plan.name}.`;
+
+        if (plan.price && plan.price > 0) {
+          priceText.textContent = `Costo mensual de referencia: $ ${plan.price.toLocaleString('es-CL')}.`;
+        } else {
+          priceText.textContent = 'Sin costo mensual de membresía.';
+        }
+
+        tagEl.textContent = 'Plan guardado en este navegador';
+        tagEl.classList.add('active');
+        tagEl.style.display = 'inline-flex';
+
+        // Marcar tarjeta elegida (OJO con las comillas invertidas/backticks)
+        const card = document.querySelector(`.plan-card[data-plan-id="${plan.id}"]`);
+        if (card) {
+          card.classList.add('plan-card-selected');
+        }
+      }
+
+      const meta = 1000; // meta demo
+      const pct  = Math.min(points / meta * 100, 100);
+      progress.style.width = pct + '%';
+      pointsText.textContent = `Puntos acumulados: ${points} pts.`;
+    }
+
+    (function initMembershipPage() {
+      updatePlanUI();
+
+      // Botones elegir plan
+      document.querySelectorAll('.m-plan-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id    = btn.dataset.planId;
+          const name  = btn.dataset.planName;
+          const price = Number(btn.dataset.planPrice || 0);
+
+          const plan = {
+            id,
+            name,
+            price,
+            setAt: new Date().toISOString()
+          };
+
+          savePlan(plan);
+          updatePlanUI();
+          alert('Plan guardado como activo (demo). No se realiza ningún cobro real.');
+        });
+      });
+
+      // Simulador de puntos
+      const form  = document.getElementById('memb-points-form');
+      const input = document.getElementById('memb-purchase');
+      const msg   = document.getElementById('memb-points-msg');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        msg.textContent = '';
+
+        const monto = Number(input.value || 0);
+        if (!monto || monto <= 0) {
+          msg.textContent = 'Ingresa un monto válido para simular.';
+          return;
+        }
+
+        const plan   = loadPlan();
+        const factor = plan ? factorForPlan(plan.id) : 1;
+        const nuevos = Math.floor(monto / 1000) * factor;
+
+        const actuales = loadPoints();
+        const total    = actuales + nuevos;
+
+        savePoints(total);
+        updatePlanUI();
+
+        msg.textContent = `Con esta compra sumarías ${nuevos} puntos (factor x${factor}). Total estimado: ${total} pts.`;
+      });
+    })();
+  </script>
 </body>
 </html>

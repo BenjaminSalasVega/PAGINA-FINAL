@@ -8,8 +8,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .tintos-page { padding:32px 0 40px; }
+    .tintos-header { margin-bottom:14px; }
+    .tintos-header .subtitle { margin-top:4px; font-size:.9rem; color:var(--text-muted); }
+
+    .product-card img {
+      width:100%;
+      height:210px;
+      object-fit:cover;
+      border-radius:18px;
+      margin-bottom:8px;
+    }
+    .product-card h2 {
+      font-size:.95rem;
+      margin:0 0 4px;
+    }
+    .product-card p {
+      margin:0 0 4px;
+      font-size:.8rem;
+      color:var(--text-muted);
+    }
+    .product-card .price {
+      font-weight:600;
+      font-size:.9rem;
+      margin-bottom:4px;
+    }
+    .product-card-footer {
+      display:flex;
+      gap:8px;
+      margin-top:4px;
+    }
+    .product-card-footer .btn {
+      flex:1;
+      text-align:center;
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
@@ -19,21 +56,27 @@
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+      <div class="search"><input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos"></div>
+   <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
       <div class="icons">
         <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
         <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
@@ -43,72 +86,22 @@
     </div>
   </nav>
 
-  
-    <main class="container" style="padding:32px 0">
+  <!-- CONTENIDO -->
+  <main class="container tintos-page">
+    <header class="tintos-header">
       <h1 class="h1 reveal">Tintos</h1>
-      <section class="grid cols-3" style="margin-top:12px">
-<article class="card pad reveal tile" data-item="Reserva Especial 2016 Cabernet Sauvignon 9690">
-  <img src="assets/img/producto_01.jpg" alt="Botella Reserva Especial 2016">
-  <h3>Reserva Especial 2016</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 9,690</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p01" data-name="Reserva Especial 2016">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p01">Detalles</a>
-  </div>
-</article>
+      <p class="subtitle">
+        Selección de Cabernets y blends para acompañar carnes, pastas y tablas. Todos los productos se integran con la
+        ficha de producto y el carrito de compra (demo).
+      </p>
+    </header>
 
-<article class="card pad reveal tile" data-item="Reserva Especial 2018 Cabernet Sauvignon 11090">
-  <img src="assets/img/producto_03.jpg" alt="Botella Reserva Especial 2018">
-  <h3>Reserva Especial 2018</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 11,090</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p03" data-name="Reserva Especial 2018">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p03">Detalles</a>
-  </div>
-</article>
+    <section id="tintos-grid" class="grid cols-3" style="margin-top:12px">
+      <!-- Rellenado por JS -->
+    </section>
+  </main>
 
-<article class="card pad reveal tile" data-item="Reserva Especial 2020 Cabernet Sauvignon 12490">
-  <img src="assets/img/producto_05.jpg" alt="Botella Reserva Especial 2020">
-  <h3>Reserva Especial 2020</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 12,490</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p05" data-name="Reserva Especial 2020">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p05">Detalles</a>
-  </div>
-</article>
-
-<article class="card pad reveal tile" data-item="Reserva Especial 2022 Cabernet Sauvignon 13890">
-  <img src="assets/img/producto_07.jpg" alt="Botella Reserva Especial 2022">
-  <h3>Reserva Especial 2022</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 13,890</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p07" data-name="Reserva Especial 2022">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p07">Detalles</a>
-  </div>
-</article>
-
-<article class="card pad reveal tile" data-item="Reserva Especial 2024 Cabernet Sauvignon 15290">
-  <img src="assets/img/producto_09.jpg" alt="Botella Reserva Especial 2024">
-  <h3>Reserva Especial 2024</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 15,290</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p09" data-name="Reserva Especial 2024">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p09">Detalles</a>
-  </div>
-</article>
-
-<article class="card pad reveal tile" data-item="Reserva Especial 2026 Cabernet Sauvignon 16690">
-  <img src="assets/img/producto_11.jpg" alt="Botella Reserva Especial 2026">
-  <h3>Reserva Especial 2026</h3>
-  <p class="subtitle">Cabernet Sauvignon • $ 16,690</p>
-  <div style="display:flex;gap:8px">
-    <a class="btn primary" href="#" data-add="p11" data-name="Reserva Especial 2026">Agregar</a>
-    <a class="btn ghost" href="producto.html?id=p11">Detalles</a>
-  </div>
-</article></section>
-    </main>
-    
-
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -124,7 +117,127 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try{ runSearch(); }catch(e){}
+
+    const CART_KEY = 'vu_cart';
+
+    const TINTOS = [
+      {
+        id:'p01',
+        nombre:'Reserva Especial 2016',
+        precio:9690,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Cabernet clásico del Maipo, con notas a cassis, ciruela y toques de vainilla.',
+        image:'https://images.pexels.com/photos/2149147/pexels-photo-2149147.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      },
+      {
+        id:'p03',
+        nombre:'Reserva Especial 2018',
+        precio:11090,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Mayor estructura, taninos firmes y potencial de guarda medio.',
+        image:'https://images.pexels.com/photos/2149151/pexels-photo-2149151.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      },
+      {
+        id:'p05',
+        nombre:'Reserva Especial 2020',
+        precio:12490,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Fruta roja madura y frescura equilibrada, ideal para carnes a la parrilla.',
+        image:'https://images.pexels.com/photos/2149161/pexels-photo-2149161.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      },
+      {
+        id:'p07',
+        nombre:'Reserva Especial 2022',
+        precio:13890,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Perfil moderno, jugoso, con paso amable y final largo.',
+        image:'https://images.pexels.com/photos/2149148/pexels-photo-2149148.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      },
+      {
+        id:'p09',
+        nombre:'Reserva Especial 2024',
+        precio:15290,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Añada reciente con gran intensidad aromática y buena concentración.',
+        image:'https://images.pexels.com/photos/1407857/pexels-photo-1407857.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      },
+      {
+        id:'p11',
+        nombre:'Reserva Especial 2026',
+        precio:16690,
+        cepa:'Cabernet Sauvignon',
+        descripcion:'Pensado para guarda, estructura alta y complejidad en nariz.',
+        image:'https://images.pexels.com/photos/2149146/pexels-photo-2149146.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      }
+    ];
+
+    function loadCart(){
+      try{
+        const raw = localStorage.getItem(CART_KEY);
+        return raw ? JSON.parse(raw) : [];
+      }catch(e){ return []; }
+    }
+    function saveCart(c){ localStorage.setItem(CART_KEY, JSON.stringify(c)); }
+    function updateCartBadge(){
+      const badge = document.querySelector('[data-cart-count]');
+      if(!badge) return;
+      const cart = loadCart();
+      const total = cart.reduce((acc,i)=>acc+i.qty,0);
+      badge.textContent = total;
+    }
+
+    function addToCart(product){
+      const cart = loadCart();
+      const existing = cart.find(i => i.id === product.id);
+      if(existing){
+        existing.qty += 1;
+      }else{
+        cart.push({
+          id: product.id,
+          nombre: product.nombre,
+          precio: product.precio,
+          qty: 1,
+          tipo: 'tinto'
+        });
+      }
+      saveCart(cart);
+      updateCartBadge();
+      alert('Producto agregado al carrito (demo).');
+    }
+
+    function renderTintos(){
+      const grid = document.getElementById('tintos-grid');
+      grid.innerHTML = '';
+      TINTOS.forEach(p => {
+        const art = document.createElement('article');
+        art.className = 'card pad reveal product-card';
+        art.innerHTML = `
+          <img src="${p.image}" alt="${p.nombre}">
+          <h2>${p.nombre}</h2>
+          <p>${p.cepa}</p>
+          <p>${p.descripcion}</p>
+          <div class="price">$ ${p.precio.toLocaleString('es-CL')}</div>
+          <div class="product-card-footer">
+            <a class="btn primary" href="#" data-id="${p.id}">Agregar</a>
+            <a class="btn ghost" href="producto.html?id=${p.id}">Detalles</a>
+          </div>
+        `;
+        art.querySelector('.btn.primary').addEventListener('click', e => {
+          e.preventDefault();
+          addToCart(p);
+        });
+        grid.appendChild(art);
+      });
+    }
+
+    (function initTintos(){
+      updateCartBadge();
+      renderTintos();
+    })();
+  </script>
 </body>
 </html>

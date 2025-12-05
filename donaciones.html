@@ -8,32 +8,119 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .donaciones-page { padding:32px 0 40px; }
+    .donaciones-header { margin-bottom:14px; }
+    .donaciones-header .subtitle { margin-top:4px; font-size:.9rem; }
+
+    .donaciones-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.7fr) minmax(0,1.3fr);
+      gap:18px;
+    }
+    .donaciones-body { font-size:.84rem; color:var(--text-muted); }
+    .donaciones-body p { margin:0 0 6px; }
+    .donaciones-body ul { margin:4px 0 8px; padding-left:18px; }
+    .donaciones-body li { margin-bottom:3px; }
+
+    .donaciones-form label { font-size:.8rem; display:block; margin-bottom:6px; }
+    .donaciones-form input[type="number"],
+    .donaciones-form select {
+      width:100%;
+      margin-top:2px;
+    }
+    .donaciones-form fieldset {
+      border:none;
+      padding:0;
+      margin:0 0 8px;
+    }
+    .donaciones-form legend {
+      font-size:.82rem;
+      margin-bottom:4px;
+    }
+    .donaciones-form .radio-row {
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      font-size:.8rem;
+    }
+    .donaciones-form .radio-row label {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin:0;
+    }
+    .donaciones-msg {
+      margin-top:6px;
+      font-size:.78rem;
+    }
+    .donaciones-msg.error { color:#fecaca; }
+    .donaciones-msg.ok { color:#bbf7d0; }
+
+    .donaciones-summary {
+      font-size:.82rem;
+      color:var(--text-muted);
+    }
+    .donaciones-summary p { margin:0 0 4px; }
+    .donaciones-tag {
+      display:inline-flex;
+      align-items:center;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.7);
+      font-size:.72rem;
+      margin-top:4px;
+    }
+
+    @media (max-width:960px){
+      .donaciones-layout { grid-template-columns:minmax(0,1fr); }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO SUPERIOR -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
-      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
-      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>
+      </a>
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+    <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
       <div class="icons">
         <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
         <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
@@ -43,8 +130,76 @@
     </div>
   </nav>
 
-  <main class='container' style='padding:34px 0'><h1 class='h1 reveal'>Donaciones</h1><div class='card pad reveal'><p>Contenido próximamente.</p></div></main>
+  <!-- CONTENIDO -->
+  <main class="container donaciones-page">
+    <header class="donaciones-header">
+      <h1 class="h1 reveal">Donaciones</h1>
+      <p class="subtitle">
+        Configura tu preferencia de donación para que una parte de tus compras apoye proyectos sociales y ambientales.
+      </p>
+    </header>
 
+    <section class="donaciones-layout">
+      <!-- Info -->
+      <article class="card pad reveal donaciones-body">
+        <p><strong>¿Cómo funciona el programa de donaciones?</strong></p>
+        <ul>
+          <li>Seleccionas una preferencia de donación (monto fijo o “redondeo solidario”).</li>
+          <li>En el proceso de pago, se aplicará automáticamente según lo que definas aquí.</li>
+          <li>Periódicamente mostramos un resumen de los montos recaudados y las organizaciones apoyadas.</li>
+        </ul>
+
+        <p><strong>Tipos de causa que apoyamos</strong></p>
+        <ul>
+          <li>Fundaciones que trabajan con comunidades vulnerables.</li>
+          <li>Proyectos de reforestación y cuidado del agua.</li>
+          <li>Iniciativas culturales vinculadas al vino y el patrimonio local.</li>
+        </ul>
+      </article>
+
+      <!-- Formulario -->
+      <aside class="card pad reveal donaciones-form">
+        <h2 class="section-title">Preferencias de donación</h2>
+
+        <form id="donation-form">
+          <fieldset>
+            <legend>Tipo de donación</legend>
+            <div class="radio-row">
+              <label><input type="radio" name="tipo" value="ninguna" checked> Sin donación adicional</label>
+              <label><input type="radio" name="tipo" value="redondeo"> Redondeo solidario (al próximo $500)</label>
+              <label><input type="radio" name="tipo" value="fijo"> Monto fijo por compra</label>
+            </div>
+          </fieldset>
+
+          <label>
+            Monto fijo (opcional)
+            <input type="number" min="500" step="500" id="donation-amount" placeholder="Ej: 1000">
+          </label>
+
+          <label>
+            Causa preferida
+            <select id="donation-cause">
+              <option value="ninguna">Sin preferencia</option>
+              <option value="social">Proyectos sociales</option>
+              <option value="ambiental">Medio ambiente</option>
+              <option value="cultural">Cultura y patrimonio</option>
+            </select>
+          </label>
+
+          <button class="btn primary" type="submit" style="margin-top:8px">Guardar preferencia</button>
+          <p id="donation-msg" class="donaciones-msg"></p>
+        </form>
+
+        <div class="donaciones-summary" style="margin-top:12px">
+          <p><strong>Tu configuración actual</strong></p>
+          <p id="donation-summary-text">Sin datos aún. Guarda tu preferencia para verla aquí.</p>
+          <span id="donation-summary-tag" class="donaciones-tag" style="display:none;"></span>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -60,7 +215,88 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try { runSearch(); } catch(e) {}
+
+    const DONATION_PREF_KEY = 'vu_donation_pref';
+
+    function loadDonationPref() {
+      try {
+        const raw = localStorage.getItem(DONATION_PREF_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch(e){ return null; }
+    }
+    function saveDonationPref(pref) {
+      localStorage.setItem(DONATION_PREF_KEY, JSON.stringify(pref));
+    }
+
+    function updateDonationSummary() {
+      const pref = loadDonationPref();
+      const textEl = document.getElementById('donation-summary-text');
+      const tagEl = document.getElementById('donation-summary-tag');
+
+      if (!pref) {
+        textEl.textContent = 'Sin datos aún. Guarda tu preferencia para verla aquí.';
+        tagEl.style.display = 'none';
+        return;
+      }
+
+      let tipoLabel = 'Sin donación adicional';
+      if (pref.tipo === 'redondeo') tipoLabel = 'Redondeo solidario al próximo $500';
+      if (pref.tipo === 'fijo') tipoLabel = `Monto fijo de $${pref.monto || 0} por compra`;
+
+      let causaLabel = 'Sin preferencia de causa';
+      if (pref.causa === 'social') causaLabel = 'Proyectos sociales';
+      if (pref.causa === 'ambiental') causaLabel = 'Proyectos ambientales';
+      if (pref.causa === 'cultural') causaLabel = 'Cultura y patrimonio';
+
+      textEl.textContent = `${tipoLabel}. Causa preferida: ${causaLabel}.`;
+      tagEl.textContent = 'Configuración activa';
+      tagEl.style.display = 'inline-flex';
+    }
+
+    (function initDonationForm(){
+      const form = document.getElementById('donation-form');
+      const msg = document.getElementById('donation-msg');
+
+      // Prefill si hay datos
+      const saved = loadDonationPref();
+      if (saved) {
+        const radios = form.querySelectorAll('input[name="tipo"]');
+        radios.forEach(r => { if (r.value === saved.tipo) r.checked = true; });
+        document.getElementById('donation-amount').value = saved.monto || '';
+        document.getElementById('donation-cause').value = saved.causa || 'ninguna';
+      }
+      updateDonationSummary();
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        msg.textContent = '';
+        msg.className = 'donaciones-msg';
+
+        const tipo = form.querySelector('input[name="tipo"]:checked').value;
+        const montoVal = document.getElementById('donation-amount').value;
+        const causa = document.getElementById('donation-cause').value;
+
+        if (tipo === 'fijo' && (!montoVal || Number(montoVal) < 500)) {
+          msg.textContent = 'Para monto fijo, ingresa al menos $500.';
+          msg.classList.add('error');
+          return;
+        }
+
+        const pref = {
+          tipo,
+          monto: tipo === 'fijo' ? Number(montoVal) : 0,
+          causa
+        };
+        saveDonationPref(pref);
+        updateDonationSummary();
+        msg.textContent = 'Preferencia guardada correctamente. Se aplicará en tu próxima compra.';
+        msg.classList.add('ok');
+      });
+    })();
+  </script>
 </body>
 </html>

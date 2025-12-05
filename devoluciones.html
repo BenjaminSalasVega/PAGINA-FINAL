@@ -8,43 +8,383 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Estilos específicos Devoluciones -->
+  <style>
+    .returns-page {
+      padding: 32px 0 40px;
+    }
+    .returns-header {
+      margin-bottom: 14px;
+    }
+    .returns-header .subtitle {
+      margin-top: 4px;
+      font-size: .9rem;
+    }
+
+    .returns-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 18px;
+    }
+
+    .returns-section-title {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+
+    .returns-body {
+      font-size: .84rem;
+      color: var(--text-muted);
+    }
+
+    .returns-body p {
+      margin: 0 0 6px;
+    }
+
+    .returns-body ul {
+      margin: 4px 0 8px;
+      padding-left: 18px;
+    }
+
+    .returns-body li {
+      margin-bottom: 3px;
+    }
+
+    .returns-chips {
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin: 6px 0 8px;
+      font-size:.76rem;
+    }
+
+    .returns-chip {
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.6);
+      color:#e5e7eb;
+    }
+
+    .returns-chip.important {
+      border-color: rgba(248,113,113,.8);
+      color:#fecaca;
+    }
+
+    .returns-chip.info {
+      border-color: rgba(96,165,250,.8);
+      color:#bfdbfe;
+    }
+
+    .returns-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: .78rem;
+    }
+
+    .returns-table th,
+    .returns-table td {
+      padding: 6px 4px;
+      border-bottom: 1px solid rgba(30,64,175,.5);
+    }
+
+    .returns-table th {
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .badge-chip {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:2px 8px;
+      border-radius:999px;
+      font-size:.72rem;
+      border:1px solid rgba(148,163,184,.6);
+      color:#e5e7eb;
+    }
+    .badge-chip.success {
+      border-color: rgba(52,211,153,.8);
+      color:#bbf7d0;
+    }
+    .badge-chip.warn {
+      border-color: rgba(248,113,113,.8);
+      color:#fecaca;
+    }
+
+    .returns-note {
+      margin-top: 6px;
+      font-size: .75rem;
+      color: var(--text-muted);
+    }
+
+    /* Lado derecho: pasos + imagen */
+    .returns-side {
+      font-size:.82rem;
+      color:var(--text-muted);
+    }
+
+    .returns-steps {
+      margin: 0 0 10px;
+      padding-left: 18px;
+    }
+
+    .returns-steps li {
+      margin-bottom: 4px;
+    }
+
+    .returns-figure {
+      margin-top: 10px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(148,163,184,.6);
+    }
+
+    .returns-figure img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .returns-figure small {
+      display:block;
+      padding:6px 10px;
+      font-size:.75rem;
+      color:var(--text-muted);
+      background:rgba(15,23,42,.92);
+    }
+
+    .returns-contact {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(30,64,175,.6);
+      font-size:.78rem;
+    }
+
+    @media (max-width: 960px) {
+      .returns-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .returns-figure img {
+        height: 210px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO SUPERIOR -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
-      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
-      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAVBAR -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+
+   <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>>
+
       <div class="icons">
-        <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
-        <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
-        <a class="icon" href="carrito.html" aria-label="Carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/></svg></a>
+        <a class="icon" href="buscar.html" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="2"/>
+            <path d="M20 20l-3.2-3.2" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="cuenta.html" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4" stroke-width="2"/>
+            <path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="carrito.html" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/>
+          </svg>
+        </a>
         <span class="badge cart" title="Productos en carrito" data-cart-count>0</span>
       </div>
     </div>
   </nav>
 
-  <main class='container' style='padding:34px 0'><h1 class='h1 reveal'>Devoluciones</h1><div class='card pad reveal'><p>Contenido próximamente.</p></div></main>
+  <!-- CONTENIDO -->
+  <main class="container returns-page">
+    <header class="returns-header">
+      <h1 class="h1 reveal">Cambios y devoluciones</h1>
+      <p class="subtitle">
+        Nuestra política está pensada para ser clara y similar a las grandes cadenas: plazos definidos, requisitos simples
+        y varias alternativas para que tu experiencia sea la mejor posible.
+      </p>
+    </header>
 
+    <section class="returns-layout">
+      <!-- Columna principal: política -->
+      <article class="card pad reveal">
+        <h2 class="returns-section-title">Política de cambios y devoluciones</h2>
+
+        <div class="returns-chips">
+          <span class="returns-chip important">10 días retracto compras online</span>
+          <span class="returns-chip info">90 días por falla de fábrica</span>
+          <span class="returns-chip">Cambio por gusto sujeto a stock</span>
+        </div>
+
+        <div class="returns-body">
+          <p><strong>1. Derecho a retracto (compras online)</strong></p>
+          <p>
+            Para compras realizadas a través de nuestro sitio web, dispones de <strong>10 días corridos</strong> desde la
+            recepción del producto para solicitar el retracto, siempre que el vino:
+          </p>
+          <ul>
+            <li>Se encuentre <strong>sellado</strong> y en perfecto estado, con sus etiquetas originales.</li>
+            <li>Incluya su embalaje original (cajas, estuches, material de protección).</li>
+            <li>No presente signos de uso, manipulación indebida o daño por mal almacenamiento.</li>
+          </ul>
+
+          <p><strong>2. Cambios y devoluciones por falla o problema de calidad</strong></p>
+          <p>
+            Si el producto presenta <strong>falla de fábrica</strong> (por ejemplo, vino “picado”, corcho defectuoso,
+            sabor claramente alterado), cuentas con <strong>90 días corridos</strong> desde la compra para solicitar:
+          </p>
+          <ul>
+            <li>Cambio por el mismo producto, o</li>
+            <li>Cambio por otro vino de igual valor, o</li>
+            <li>Devolución del dinero según medio de pago original.</li>
+          </ul>
+
+          <p><strong>3. Productos que no aplican a devolución</strong></p>
+          <ul>
+            <li>Botellas abiertas o consumidas en más de un 20% (excepto en evaluación de falla).</li>
+            <li>Productos en mal estado por <strong>almacenamiento incorrecto</strong> en el domicilio del cliente.</li>
+            <li>Productos en <strong>liquidación</strong> o con daño informado previamente.</li>
+          </ul>
+
+          <p><strong>4. Tabla resumen de motivos y solución</strong></p>
+
+          <table class="returns-table">
+            <thead>
+              <tr>
+                <th>Motivo</th>
+                <th>Plazo</th>
+                <th>Solución habitual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Retracto compra online (sin uso)</td>
+                <td>10 días</td>
+                <td><span class="badge-chip success">Devolución o cambio</span></td>
+              </tr>
+              <tr>
+                <td>Falla de producto / vino defectuoso</td>
+                <td>90 días</td>
+                <td><span class="badge-chip success">Cambio o devolución</span></td>
+              </tr>
+              <tr>
+                <td>Producto equivocado en el despacho</td>
+                <td>48 horas desde la recepción</td>
+                <td><span class="badge-chip success">Cambio sin costo</span></td>
+              </tr>
+              <tr>
+                <td>Cambio por gusto (sin falla)</td>
+                <td>10 días (sellado)</td>
+                <td><span class="badge-chip warn">Sujeto a stock y evaluación</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="returns-note">
+            Importante: esta política es referencial y puede ajustarse según la legislación vigente y términos
+            comerciales. En un entorno productivo, estos textos deben ser revisados por el área legal de la empresa.
+          </p>
+        </div>
+      </article>
+
+      <!-- Columna lateral: pasos + imagen -->
+      <aside class="card pad reveal returns-side">
+        <h2 class="returns-section-title">¿Cómo iniciar una devolución?</h2>
+        <p>
+          Para que el proceso sea rápido, te pediremos algunos datos del pedido y evidencia fotográfica del producto.
+        </p>
+
+        <ol class="returns-steps">
+          <li>Ingresa a <strong>“Mis pedidos”</strong> desde tu cuenta.</li>
+          <li>Selecciona el pedido y haz clic en <strong>“Solicitar cambio/devolución”</strong>.</li>
+          <li>Elige el motivo, adjunta fotos (si corresponde) y envía la solicitud.</li>
+          <li>Revisaremos el caso en un máximo de <strong>48 horas hábiles</strong>.</li>
+          <li>Te informaremos el resultado y las instrucciones para retiro o entrega en tienda.</li>
+        </ol>
+
+        <figure class="returns-figure">
+          <img
+            src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Centro de distribución con cajas listas para envío y devolución"
+          >
+          <small>
+            Imagen referencial de proceso logístico. En una cadena comercial real, esta sección suele acompañarse
+            de un resumen visual del flujo de devolución.
+          </small>
+        </figure>
+
+        <div class="returns-contact">
+          <p><strong>¿Dudas con tu caso?</strong></p>
+          <p>
+            Escríbenos a <strong>soporte@vinahurbana.cl</strong> o contáctanos en el chat en línea indicando:
+          </p>
+          <ul>
+            <li>Número de pedido.</li>
+            <li>Fecha de compra.</li>
+            <li>Motivo de la devolución.</li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -58,8 +398,12 @@
       <a href="vinedos-virtual.html">Viñedos VR</a>
       <a href="maridaje-etiqueta.html">Maridaje AR</a>
     </div>
-    <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Viña Urbana</span>
+      <span class="footer-badge">+18 | Consume con moderación</span>
+    </div>
   </footer>
+
   <script src="scripts.js"></script>
   <script>try{runSearch();}catch(e){}</script>
 </body>

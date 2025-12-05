@@ -8,8 +8,111 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .vr-page { padding:32px 0 40px; }
+    .vr-header { margin-bottom:16px; }
+    .vr-header .subtitle { margin-top:4px; font-size:.9rem; color:var(--text-muted); }
+
+    .vr-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.7fr) minmax(0,1.3fr);
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .vr-hero {
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,.6);
+      background: radial-gradient(circle at top left, rgba(129,140,248,.35), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(248,113,113,.28), transparent 55%),
+                  rgba(15,23,42,.98);
+      padding:18px;
+      font-size:.85rem;
+      color:var(--text-muted);
+    }
+    .vr-hero h2 {
+      margin:0 0 6px;
+      color:#e5e7eb;
+    }
+    .vr-hero p { margin:0 0 6px; }
+    .vr-hero ul {
+      margin:4px 0 8px;
+      padding-left:18px;
+      font-size:.82rem;
+    }
+    .vr-hero li { margin-bottom:3px; }
+
+    .vr-hero-img {
+      margin-top:8px;
+      border-radius:18px;
+      overflow:hidden;
+      max-height:220px;
+    }
+    .vr-hero-img img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .vr-sim {
+      border-radius:24px;
+      border:1px solid rgba(148,163,184,.6);
+      background:rgba(15,23,42,.98);
+      padding:14px;
+      font-size:.82rem;
+      color:var(--text-muted);
+    }
+    .vr-sim h2 {
+      margin:0 0 6px;
+      color:#e5e7eb;
+      font-size:.98rem;
+    }
+    .vr-sim label {
+      display:block;
+      font-size:.8rem;
+      margin-bottom:4px;
+    }
+    .vr-sim select {
+      width:100%;
+      margin-bottom:8px;
+    }
+    .vr-sim textarea {
+      width:100%;
+      min-height:80px;
+      resize:vertical;
+      font-size:.8rem;
+    }
+    .vr-sim small { font-size:.75rem; }
+
+    .vr-tour-meta {
+      margin-top:6px;
+      font-size:.78rem;
+    }
+    .vr-tag {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:2px 8px;
+      font-size:.72rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.8);
+      margin-top:4px;
+    }
+    .vr-tag.active {
+      border-color:rgba(52,211,153,.9);
+      color:#bbf7d0;
+    }
+
+    @media(max-width:960px){
+      .vr-layout { grid-template-columns:minmax(0,1fr); }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
@@ -19,21 +122,27 @@
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+      <div class="search"><input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos"></div>
+  <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
       <div class="icons">
         <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
         <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
@@ -43,8 +152,94 @@
     </div>
   </nav>
 
-  <main class='container' style='padding:34px 0'><h1 class='h1 reveal'>Viñedos VR</h1><div class='card pad reveal'><p>Contenido próximamente.</p></div></main>
+  <!-- CONTENIDO -->
+  <main class="container vr-page">
+    <header class="vr-header">
+      <h1 class="h1 reveal">Viñedos VR</h1>
+      <p class="subtitle">
+        Una propuesta de recorrido virtual por viñedos chilenos. Esta sección maqueta cómo podría funcionar una
+        experiencia VR integrada a Viña Urbana.
+      </p>
+    </header>
 
+    <section class="vr-layout">
+      <!-- Lado descriptivo -->
+      <article class="vr-hero reveal">
+        <h2>¿Cómo funcionaría Viñedos VR?</h2>
+        <p>
+          En un entorno real, podrías recorrer los viñedos en 360°, acercarte a las parras, visitar la bodega y
+          entender el origen de cada etiqueta que compras en Viña Urbana.
+        </p>
+        <ul>
+          <li>Experiencias 360° accesibles desde navegador o visor VR.</li>
+          <li>Puntos interactivos con información de cepas, suelo y clima.</li>
+          <li>Integración con catálogo: desde un vino puedes ir a su viñedo.</li>
+        </ul>
+
+        <p>
+          Esta demo se enfoca en el diseño de interfaz y en simular la lógica de selección de tours, guardando
+          tu última visita en <code>localStorage</code>.
+        </p>
+
+        <div class="vr-hero-img">
+          <img
+            src="https://images.pexels.com/photos/552954/pexels-photo-552954.jpeg?auto=compress&cs=tinysrgb&w=1200"
+            alt="Vista panorámica de viñedos al atardecer"
+          >
+        </div>
+      </article>
+
+      <!-- Simulador de tour VR -->
+      <aside class="vr-sim reveal">
+        <h2>Simulador de tour VR (demo)</h2>
+        <p>
+          Elige un valle y un tipo de experiencia. El sistema genera una descripción de cómo sería el tour virtual
+          y guarda tu última combinación.
+        </p>
+
+        <form id="vr-form" style="margin-top:8px;">
+          <label>
+            Valle / zona
+            <select id="vr-valle">
+              <option value="maipo">Valle del Maipo</option>
+              <option value="casablanca">Valle de Casablanca</option>
+              <option value="colchagua">Valle de Colchagua</option>
+              <option value="maule">Valle del Maule</option>
+            </select>
+          </label>
+
+          <label>
+            Tipo de experiencia
+            <select id="vr-tipo">
+              <option value="recorrido-general">Recorrido general por el viñedo</option>
+              <option value="cosecha">Tour de cosecha y vendimia</option>
+              <option value="bodega">Bodega y sala de barricas</option>
+              <option value="maridaje">Punto de maridaje y sala de degustación</option>
+            </select>
+          </label>
+
+          <label>
+            Detalle del tour (descripción generada)
+            <textarea id="vr-descripcion" readonly></textarea>
+          </label>
+
+          <button class="btn primary" type="submit" style="margin-top:2px;">Generar experiencia demo</button>
+        </form>
+
+        <div class="vr-tour-meta">
+          <p id="vr-meta-text">Aún no se ha generado un tour en este navegador.</p>
+          <span id="vr-meta-tag" class="vr-tag" style="display:none;">Último tour guardado</span>
+        </div>
+
+        <p style="margin-top:10px;">
+          Nota: no se carga ningún contenido VR real en esta maqueta. El objetivo es mostrar la
+          <strong>interfaz</strong> y la integración con el resto de módulos (catálogo, maridaje, club, etc.).
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -60,7 +255,79 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try{ runSearch(); }catch(e){}
+
+    const VR_KEY = 'vu_vr_last';
+
+    function loadLastVR(){
+      try{
+        const raw = localStorage.getItem(VR_KEY);
+        return raw ? JSON.parse(raw) : null;
+      }catch(e){ return null; }
+    }
+    function saveLastVR(data){
+      localStorage.setItem(VR_KEY, JSON.stringify(data));
+    }
+
+    function buildVRText(valle, tipo){
+      let valleTxt = '';
+      if(valle === 'maipo') valleTxt = 'el Valle del Maipo, cuna de cabernets clásicos chilenos';
+      else if(valle === 'casablanca') valleTxt = 'el Valle de Casablanca, cerca de la costa, ideal para blancos frescos';
+      else if(valle === 'colchagua') valleTxt = 'el Valle de Colchagua, con viñedos de clima cálido y gran amplitud térmica';
+      else if(valle === 'maule') valleTxt = 'el Valle del Maule, uno de los más tradicionales y extensos del país';
+      else valleTxt = 'un valle vitivinícola chileno';
+
+      let tipoTxt = '';
+      if(tipo === 'recorrido-general') tipoTxt =
+        'Recorrerás entre las hileras de parras, con puntos interactivos para entender suelos, cepas y manejo del viñedo.';
+      else if(tipo === 'cosecha') tipoTxt =
+        'Verás el proceso de cosecha, selección de racimos y llegada a bodega, con foco en la vendimia.';
+      else if(tipo === 'bodega') tipoTxt =
+        'Entrarás a la bodega y sala de barricas, entendiendo cómo la crianza aporta complejidad al vino.';
+      else if(tipo === 'maridaje') tipoTxt =
+        'Terminarás en una sala de degustación virtual, con sugerencias de maridaje conectadas al catálogo de Viña Urbana.';
+      else tipoTxt =
+        'Podrás moverte libremente por el viñedo y la bodega, con puntos interactivos de información.';
+
+      return `Este tour virtual te lleva a ${valleTxt}. ${tipoTxt} La experiencia se puede vivir desde el navegador o con un visor VR compatible (en una versión productiva).`;
+    }
+
+    (function initVR(){
+      const form = document.getElementById('vr-form');
+      const valleSel = document.getElementById('vr-valle');
+      const tipoSel = document.getElementById('vr-tipo');
+      const descArea = document.getElementById('vr-descripcion');
+      const metaText = document.getElementById('vr-meta-text');
+      const metaTag = document.getElementById('vr-meta-tag');
+
+      const last = loadLastVR();
+      if(last){
+        valleSel.value = last.valle;
+        tipoSel.value = last.tipo;
+        descArea.value = buildVRText(last.valle, last.tipo);
+        metaText.textContent = `Último tour generado: ${last.label}.`;
+        metaTag.style.display = 'inline-flex';
+        metaTag.classList.add('active');
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const valle = valleSel.value;
+        const tipo = tipoSel.value;
+        const txt = buildVRText(valle, tipo);
+        descArea.value = txt;
+
+        const label = `${valleSel.options[valleSel.selectedIndex].text} · ${tipoSel.options[tipoSel.selectedIndex].text}`;
+        saveLastVR({ valle, tipo, label });
+
+        metaText.textContent = `Último tour generado: ${label}.`;
+        metaTag.style.display = 'inline-flex';
+        metaTag.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Viña Urbana – Plataforma Boutique de Vinos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <style>
+        :root {
+            --primary: #7c1f35;
+            --primary-dark: #5b1626;
+            --accent: #f3c969;
+            --bg: #0f0f10;
+            --bg-soft: #18181b;
+            --card: #1f1f23;
+            --text: #f9fafb;
+            --muted: #9ca3af;
+            --border: #27272f;
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: radial-gradient(circle at top, #261321 0, #050507 40%, #020203 100%);
+            color: var(--text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(16px);
+            background: rgba(10, 10, 12, 0.85);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 0 0, #fce4ec, #7c1f35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .brand-title {
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            padding-bottom: 4px;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            border-radius: 999px;
+            border: 1px solid transparent;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 12px 30px rgba(124, 31, 53, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 40px rgba(124, 31, 53, 0.7);
+        }
+
+        /* LAYOUT */
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 32px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* HERO */
+        .hero-kicker {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 8px;
+        }
+
+        .hero-title {
+            font-size: 40px;
+            line-height: 1.1;
+            margin: 0 0 14px;
+        }
+
+        .hero-title span {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            max-width: 460px;
+        }
+
+        .hero-actions {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-badges {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .hero-badge-pill {
+            border-radius: 999px;
+            background: rgba(24, 24, 27, 0.9);
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+        }
+
+        .hero-right {
+            background: radial-gradient(circle at top, #3c1020, #050509);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-soft);
+            padding: 18px 18px 14px;
+        }
+
+        .hero-right-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .hero-right-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .mini-card {
+            background: rgba(15, 15, 18, 0.95);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 12px;
+            font-size: 12px;
+        }
+
+        .mini-card-label {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .mini-card-value {
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .mini-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            border: 1px solid #334155;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #e5e7eb;
+            margin-top: 8px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-top: 56px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* CARDS GENERALES */
+        .card {
+            background: rgba(15, 15, 18, 0.96);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* FORMULARIOS */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        @media (max-width: 800px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 13px;
+        }
+
+        .field label {
+            color: var(--muted);
+        }
+
+        .field input,
+        .field select {
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            padding: 8px 12px;
+            background: #050509;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .field input:focus {
+            border-color: var(--accent);
+        }
+
+        .form-footer {
+            margin-top: 12px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        /* CATÁLOGO */
+        .catalog-grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .wine-card {
+            background: #050509;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .wine-name {
+            font-weight: 500;
+        }
+
+        .wine-meta {
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* MÉTRICAS */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .metric-card {
+            background: #050509;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            padding: 12px;
+            font-size: 13px;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ALERTAS */
+        .alert {
+            margin-top: 8px;
+            font-size: 12px;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .alert-success {
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.7);
+            color: #bbf7d0;
+        }
+
+        .alert-error {
+            background: rgba(185, 28, 28, 0.12);
+            border: 1px solid rgba(248, 113, 113, 0.7);
+            color: #fecaca;
+        }
+
+        .status-pill {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        footer {
+            padding: 18px 20px 28px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: rgba(7,7,9,0.95);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-inner">
+            <div class="brand">
+                <div class="brand-logo">VU</div>
+                <div>
+                    <div class="brand-title">Viña Urbana</div>
+                    <div style="font-size:11px;color:var(--muted);">
+                        Boutique de vinos &amp; experiencias
+                    </div>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#catalogo">Catálogo</a>
+                <a href="#membresias">Membresías</a>
+                <a href="#metricas">Métricas</a>
+            </nav>
+            <div class="nav-actions">
+                <span id="login-status" class="status-pill">No autenticado</span>
+                <button class="btn btn-ghost" onclick="scrollToSection('auth')">Iniciar sesión</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page">
+        <!-- HERO -->
+        <section class="grid-2">
+            <div>
+                <div class="hero-kicker">Transformación digital enológica</div>
+                <h1 class="hero-title">
+                    Gestiona tu <span>e-commerce de vinos</span> como una bodega boutique.
+                </h1>
+                <p class="hero-subtitle">
+                    Viña Urbana integra catálogo inteligente, membresías, analítica y experiencias digitales
+                    para que tu bodega entregue una experiencia premium en cada copa.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="scrollToSection('auth')">
+                        Crear cuenta &amp; acceder
+                    </button>
+                    <button class="btn btn-ghost" onclick="scrollToSection('catalogo')">
+                        Explorar catálogo demo
+                    </button>
+                </div>
+
+                <div class="hero-badges">
+                    <div class="hero-badge-pill">Catálogo con filtros avanzados</div>
+                    <div class="hero-badge-pill">Membresías Silver &amp; Gold</div>
+                    <div class="hero-badge-pill">Dashboards de ventas &amp; demanda</div>
+                </div>
+            </div>
+
+            <aside class="hero-right" id="auth">
+                <div class="hero-right-title">Acceso Viña Urbana</div>
+                <div class="hero-right-subtitle">
+                    Gestiona usuarios, sesiones y beneficios exclusivos desde una sola interfaz.
+                </div>
+                <div class="mini-grid">
+                    <div class="mini-card">
+                        <div class="mini-card-label">Nuevo usuario</div>
+                        <form id="register-form" onsubmit="handleRegister(event)">
+                            <div class="field">
+                                <label for="reg-name">Nombre</label>
+                                <input id="reg-name" type="text" required />
+                            </div>
+                            <div class="field">
+                                <label for="reg-email">Email</label>
+                                <input id="reg-email" type="email" required />
+                            </div>
+                            <div class="field">
+                                <label for="reg-password">Contraseña</label>
+                                <input id="reg-password" type="password" required />
+                            </div>
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-primary" style="width:100%;">
+                                    Registrarse
+                                </button>
+                            </div>
+                        </form>
+                        <div id="register-alert"></div>
+                    </div>
+
+                    <div class="mini-card">
+                        <div class="mini-card-label">Iniciar sesión</div>
+                        <form id="login-form" onsubmit="handleLogin(event)">
+                            <div class="field">
+                                <label for="login-email">Email</label>
+                                <input id="login-email" type="email" required />
+                            </div>
+                            <div class="field">
+                                <label for="login-password">Contraseña</label>
+                                <input id="login-password" type="password" required />
+                            </div>
+                            <div class="form-footer">
+                                <button type="submit" class="btn btn-ghost" style="width:100%;">
+                                    Iniciar sesión
+                                </button>
+                            </div>
+                        </form>
+                        <div id="login-alert"></div>
+                        <div class="mini-pill">
+                            Estado: <span id="session-pill-text">sin sesión</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- MEMBRESÍAS -->
+        <section id="membresias" class="section">
+            <div class="section-header">
+                <div>
+                    <div class="section-title">Membresías &amp; beneficios</div>
+                    <div class="section-subtitle">
+                        Activa planes Silver o Gold para tus clientes con un clic.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <p class="helper-text">
+                    Para probar, primero inicia sesión con cualquier usuario registrado. El backend registrará
+                    la membresía asociada al email autenticado.
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;">
+                    <button class="btn btn-ghost" onclick="activarMembresia('Silver')">
+                        Activar Membresía Silver
+                    </button>
+                    <button class="btn btn-primary" onclick="activarMembresia('Gold')">
+                        Activar Membresía Gold
+                    </button>
+                </div>
+                <div id="membresia-alert"></div>
+            </div>
+        </section>
+
+        <!-- CATÁLOGO -->
+        <section id="catalogo" class="section">
+            <div class="section-header">
+                <div>
+                    <div class="section-title">Catálogo inteligente</div>
+                    <div class="section-subtitle">
+                        Filtra por cepa, origen y rango de precios (datos demo desde el backend).
+                    </div>
+                </div>
+                <button class="btn btn-ghost" onclick="cargarCatalogo(event)">
+                    Recargar resultados
+                </button>
+            </div>
+
+            <div class="card">
+                <form class="form-grid" onsubmit="cargarCatalogo(event)">
+                    <div class="field">
+                        <label for="f-cepa">Cepa</label>
+                        <input id="f-cepa" placeholder="Syrah, Pinot Noir…" />
+                    </div>
+                    <div class="field">
+                        <label for="f-origen">Origen</label>
+                        <input id="f-origen" placeholder="Colchagua, Casablanca…" />
+                    </div>
+                    <div class="field">
+                        <label for="f-precio-min">Precio mínimo</label>
+                        <input id="f-precio-min" type="number" min="0" />
+                    </div>
+                    <div class="field">
+                        <label for="f-precio-max">Precio máximo</label>
+                        <input id="f-precio-max" type="number" min="0" />
+                    </div>
+                    <div class="form-footer" style="grid-column:1/-1;justify-content:flex-start;">
+                        <button type="submit" class="btn btn-primary">Aplicar filtros</button>
+                    </div>
+                </form>
+
+                <div id="catalogo-alert"></div>
+                <div id="catalogo-list" class="catalog-grid"></div>
+            </div>
+        </section>
+
+        <!-- MÉTRICAS -->
+        <section id="metricas" class="section">
+            <div class="section-header">
+                <div>
+                    <div class="section-title">Panel de métricas</div>
+                    <div class="section-subtitle">
+                        Consulta ventas, ticket promedio y clientes nuevos (datos simulados).
+                    </div>
+                </div>
+                <button class="btn btn-primary" onclick="cargarMetricas()">
+                    Actualizar métricas
+                </button>
+            </div>
+
+            <div class="card">
+                <div id="metricas-alert" class="helper-text">
+                    Pulsa en “Actualizar métricas” para obtener datos desde el backend.
+                </div>
+                <div class="metrics-grid" id="metricas-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Viña Urbana · Proyecto académico de transformación digital · Backend FastAPI + Frontend estático.
+    </footer>
+
+    <script>
+        const API_BASE = "http://127.0.0.1:8000/api/vinaurbana";
+        let accessToken = null;
+        let currentUserEmail = null;
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        function setAlert(id, message, type = "success") {
+            const container = document.getElementById(id);
+            if (!container) return;
+            if (!message) {
+                container.innerHTML = "";
+                return;
+            }
+            const cls = type === "success" ? "alert alert-success" : "alert alert-error";
+            container.innerHTML = `<div class="${cls}">${message}</div>`;
+        }
+
+        function updateSessionUI() {
+            const status = document.getElementById("login-status");
+            const pill = document.getElementById("session-pill-text");
+            if (accessToken && currentUserEmail) {
+                status.textContent = `Autenticado: ${currentUserEmail}`;
+                pill.textContent = "sesión activa";
+            } else {
+                status.textContent = "No autenticado";
+                pill.textContent = "sin sesión";
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            setAlert("register-alert", "");
+            const name = document.getElementById("reg-name").value.trim();
+            const email = document.getElementById("reg-email").value.trim();
+            const password = document.getElementById("reg-password").value.trim();
+
+            if (!name || !email || !password) {
+                setAlert("register-alert", "Completa todos los campos.", "error");
+                return;
+            }
+
+            try {
+                const resp = await fetch(`${API_BASE}/usuarios/registro`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password,
+                        preferencias: []
+                    })
+                });
+
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.detail || "Error al registrar usuario.");
+                }
+
+                setAlert(
+                    "register-alert",
+                    `Usuario ${data.email} registrado correctamente. Ahora puedes iniciar sesión.`,
+                    "success"
+                );
+                (document.getElementById("login-email").value = email),
+                    (document.getElementById("login-password").value = "");
+            } catch (err) {
+                console.error(err);
+                setAlert("register-alert", err.message, "error");
+            }
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            setAlert("login-alert", "");
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value.trim();
+
+            if (!email || !password) {
+                setAlert("login-alert", "Ingresa email y contraseña.", "error");
+                return;
+            }
+
+            try {
+                const body = new URLSearchParams();
+                body.append("grant_type", "password");
+                body.append("username", email);
+                body.append("password", password);
+                body.append("scope", "");
+                body.append("client_id", "string");
+                body.append("client_secret", "string");
+
+                const resp = await fetch(`${API_BASE}/sesion/inicio`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: body.toString()
+                });
+
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.detail || "Error al iniciar sesión.");
+                }
+
+                accessToken = data.access_token;
+                currentUserEmail = email;
+                updateSessionUI();
+                setAlert("login-alert", "Sesión iniciada correctamente.", "success");
+            } catch (err) {
+                console.error(err);
+                setAlert("login-alert", err.message, "error");
+            }
+        }
+
+        async function activarMembresia(tipo) {
+            setAlert("membresia-alert", "");
+            if (!accessToken) {
+                setAlert(
+                    "membresia-alert",
+                    "Debes iniciar sesión antes de activar una membresía.",
+                    "error"
+                );
+                return;
+            }
+
+            try {
+                const resp = await fetch(`${API_BASE}/membresias/activar`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify({ tipo, activa: true })
+                });
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.detail || "Error al activar membresía.");
+                }
+                setAlert("membresia-alert", data.message, "success");
+            } catch (err) {
+                console.error(err);
+                setAlert("membresia-alert", err.message, "error");
+            }
+        }
+
+        async function cargarCatalogo(event) {
+            if (event) event.preventDefault();
+            setAlert("catalogo-alert", "");
+
+            const cepa = document.getElementById("f-cepa").value.trim();
+            const origen = document.getElementById("f-origen").value.trim();
+            const pMin = document.getElementById("f-precio-min").value.trim();
+            const pMax = document.getElementById("f-precio-max").value.trim();
+
+            const params = new URLSearchParams();
+            if (cepa) params.append("cepa", cepa);
+            if (origen) params.append("origen", origen);
+            if (pMin) params.append("precio_min", pMin);
+            if (pMax) params.append("precio_max", pMax);
+
+            try {
+                const url = `${API_BASE}/catalogo/filtrar${params.toString() ? "?" + params.toString() : ""}`;
+                const resp = await fetch(url);
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.detail || "Error al cargar catálogo.");
+                }
+                renderCatalogo(data.data || []);
+            } catch (err) {
+                console.error(err);
+                setAlert("catalogo-alert", err.message, "error");
+            }
+        }
+
+        function renderCatalogo(items) {
+            const container = document.getElementById("catalogo-list");
+            container.innerHTML = "";
+            if (!items.length) {
+                container.innerHTML =
+                    '<div class="helper-text">No se encontraron vinos con los filtros seleccionados.</div>';
+                return;
+            }
+            for (const vino of items) {
+                const card = document.createElement("div");
+                card.className = "wine-card";
+                card.innerHTML = `
+                    <div class="wine-name">${vino.nombre}</div>
+                    <div class="wine-meta">
+                        <span>${vino.cepa}</span>
+                        <span>${vino.origen}</span>
+                    </div>
+                    <div class="wine-meta">
+                        <span>Precio aprox.</span>
+                        <span>$${vino.precio.toLocaleString("es-CL")}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        async function cargarMetricas() {
+            setAlert("metricas-alert", "Cargando métricas desde el backend...");
+            const grid = document.getElementById("metricas-grid");
+            grid.innerHTML = "";
+            try {
+                const resp = await fetch(`${API_BASE}/metricas/dashboard`);
+                const data = await resp.json();
+                if (!resp.ok) {
+                    throw new Error(data.detail || "Error al cargar métricas.");
+                }
+                const m = data.data || {};
+                grid.innerHTML = `
+                    <div class="metric-card">
+                        <div class="metric-label">Ventas del día</div>
+                        <div class="metric-value">${m.ventas ?? "-"}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Ticket promedio</div>
+                        <div class="metric-value">$${(m.ticket_promedio || 0).toLocaleString("es-CL")}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Clientes nuevos</div>
+                        <div class="metric-value">${m.clientes_nuevos ?? "-"}</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Fecha</div>
+                        <div class="metric-value">${m.fecha ?? "-"}</div>
+                    </div>
+                `;
+                setAlert("metricas-alert", "Métricas actualizadas correctamente.", "success");
+            } catch (err) {
+                console.error(err);
+                setAlert("metricas-alert", err.message, "error");
+            }
+        }
+
+        // Cargar algo de catálogo al inicio
+        cargarCatalogo();
+        updateSessionUI();
+    </script>
+</body>
+</html>

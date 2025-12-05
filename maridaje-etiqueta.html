@@ -8,43 +8,268 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .maridaje-page {
+      padding: 32px 0 40px;
+    }
+    .maridaje-header {
+      margin-bottom: 14px;
+    }
+    .maridaje-header .subtitle {
+      margin-top: 4px;
+      font-size: .9rem;
+    }
+
+    .maridaje-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 18px;
+    }
+
+    .maridaje-body {
+      font-size: .84rem;
+      color: var(--text-muted);
+    }
+    .maridaje-body p {
+      margin: 0 0 6px;
+    }
+    .maridaje-body ul {
+      margin: 4px 0 8px;
+      padding-left: 18px;
+    }
+    .maridaje-body li {
+      margin-bottom: 3px;
+    }
+
+    .maridaje-steps {
+      margin-top: 4px;
+      padding-left: 18px;
+      font-size: .82rem;
+    }
+    .maridaje-steps li {
+      margin-bottom: 4px;
+    }
+
+    /* Simulador */
+    .maridaje-sim label {
+      display: block;
+      font-size: .8rem;
+      margin-bottom: 6px;
+    }
+    .maridaje-sim select {
+      width: 100%;
+    }
+    .maridaje-sim textarea {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      font-size: .8rem;
+    }
+    .maridaje-result {
+      margin-top: 8px;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .maridaje-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.8);
+      font-size: .72rem;
+      margin-top: 4px;
+    }
+
+    .maridaje-info {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(30,64,175,.6);
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      .maridaje-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO SUPERIOR -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
-      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
-      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAVBAR -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+
+<div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
       <div class="icons">
-        <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
-        <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
-        <a class="icon" href="carrito.html" aria-label="Carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/></svg></a>
+        <a class="icon" href="buscar.html" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="2"/>
+            <path d="M20 20l-3.2-3.2" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="cuenta.html" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4" stroke-width="2"/>
+            <path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="carrito.html" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/>
+          </svg>
+        </a>
         <span class="badge cart" title="Productos en carrito" data-cart-count>0</span>
       </div>
     </div>
   </nav>
 
-  <main class='container' style='padding:34px 0'><h1 class='h1 reveal'>Maridaje AR</h1><div class='card pad reveal'><p>Contenido próximamente.</p></div></main>
+  <!-- CONTENIDO -->
+  <main class="container maridaje-page">
+    <header class="maridaje-header">
+      <h1 class="h1 reveal">Maridaje AR</h1>
+      <p class="subtitle">
+        Imagina escanear la etiqueta de tu vino y recibir, en realidad aumentada, sugerencias de platos y temperaturas de servicio.
+        Aquí simulamos cómo funcionaría esa experiencia.
+      </p>
+    </header>
 
+    <section class="maridaje-layout">
+      <!-- Lado informativo -->
+      <article class="card pad reveal maridaje-body">
+        <p><strong>¿En qué consiste el Maridaje AR?</strong></p>
+        <p>
+          En una versión productiva, la app de Viña Urbana permitiría escanear la etiqueta del vino con la cámara del
+          celular. Sobre la imagen aparecerían, en realidad aumentada:
+        </p>
+        <ul>
+          <li>Platos recomendados (entrada, fondo, postre).</li>
+          <li>Temperatura de servicio ideal.</li>
+          <li>Tips rápidos (decantación, tiempo de guarda, etc.).</li>
+        </ul>
+
+        <p><strong>Flujo típico de uso</strong></p>
+        <ol class="maridaje-steps">
+          <li>Abres la app y eliges la opción <em>“Escanear etiqueta”</em>.</li>
+          <li>Apuntas la cámara a la botella hasta que se reconozca la etiqueta.</li>
+          <li>La app identifica el vino y carga un perfil de maridaje desde la base de datos.</li>
+          <li>Se muestran en AR los platos recomendados y sugerencias, alineados con la etiqueta.</li>
+        </ol>
+
+        <p style="margin-top:6px;">
+          En esta web no podemos desplegar AR real, pero el módulo de la derecha simula el comportamiento de
+          recomendación que usaría el sistema.
+        </p>
+      </article>
+
+      <!-- Simulador de maridaje -->
+      <aside class="card pad reveal maridaje-sim">
+        <h2 class="section-title">Simulador de maridaje (demo)</h2>
+        <p style="font-size:.8rem; color:var(--text-muted);">
+          Elige el tipo de vino, la intensidad y el tipo de plato. El sistema generará una sugerencia y guardará
+          tu última combinación para futuras visitas.
+        </p>
+
+        <form id="maridaje-form" style="margin-top:8px;">
+          <label>Tipo de vino
+            <select id="mj-wine">
+              <option value="cabernet">Cabernet Sauvignon</option>
+              <option value="merlot">Merlot</option>
+              <option value="sauvignon-blanc">Sauvignon Blanc</option>
+              <option value="chardonnay">Chardonnay</option>
+              <option value="rose">Rosé</option>
+              <option value="espumante">Espumante</option>
+            </select>
+          </label>
+
+          <label>Intensidad del vino
+            <select id="mj-intensity">
+              <option value="ligero">Ligero / fresco</option>
+              <option value="medio">Medio</option>
+              <option value="intenso">Intenso / estructurado</option>
+            </select>
+          </label>
+
+          <label>Tipo de plato
+            <select id="mj-dish">
+              <option value="aperitivo">Aperitivo</option>
+              <option value="pescados">Pescados y mariscos</option>
+              <option value="carnes-rojas">Carnes rojas</option>
+              <option value="carnes-blancas">Carnes blancas</option>
+              <option value="pastas">Pastas</option>
+              <option value="postres">Postres</option>
+              <option value="tabla-quesos">Tabla de quesos</option>
+            </select>
+          </label>
+
+          <button class="btn primary" type="submit" style="margin-top:8px;">Generar maridaje</button>
+        </form>
+
+        <div id="maridaje-output" class="maridaje-result" style="display:none;">
+          <p id="maridaje-text"></p>
+          <span id="maridaje-tag" class="maridaje-tag"></span>
+        </div>
+
+        <div class="maridaje-info">
+          <p><strong>Nota:</strong> este simulador es solo referencial.</p>
+          <p>
+            En un entorno real, las recomendaciones se basarían en datos de sommeliers, pruebas internas y feedback de clientes.
+          </p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -60,7 +285,94 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try { runSearch(); } catch (e) {}
+
+    const MJ_KEY = 'vu_maridaje_last';
+
+    function loadLastMaridaje() {
+      try {
+        const raw = localStorage.getItem(MJ_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    }
+    function saveLastMaridaje(data) {
+      localStorage.setItem(MJ_KEY, JSON.stringify(data));
+    }
+
+    function buildSuggestion(vino, intensidad, plato) {
+      // Textos base
+      const vinoNombre = {
+        'cabernet': 'Cabernet Sauvignon',
+        'merlot': 'Merlot',
+        'sauvignon-blanc': 'Sauvignon Blanc',
+        'chardonnay': 'Chardonnay',
+        'rose': 'Rosé',
+        'espumante': 'Espumante'
+      }[vino] || 'Vino';
+
+      let platoTexto = '';
+      switch (plato) {
+        case 'aperitivo': platoTexto = 'aperitivos ligeros, frutos secos y canapés fríos'; break;
+        case 'pescados': platoTexto = 'pescados blancos, mariscos y ceviches frescos'; break;
+        case 'carnes-rojas': platoTexto = 'carnes rojas a la parrilla o guisos de larga cocción'; break;
+        case 'carnes-blancas': platoTexto = 'pollo, pavo o cerdo magro con salsas suaves'; break;
+        case 'pastas': platoTexto = 'pastas con salsas cremosas o de tomate suave'; break;
+        case 'postres': platoTexto = 'postres no demasiado dulces, como tartas de fruta o creme brulée'; break;
+        case 'tabla-quesos': platoTexto = 'tablas de quesos semi maduros y frutos secos'; break;
+        default: platoTexto = 'platos de intensidad media'; break;
+      }
+
+      let intensidadExtra = '';
+      if (intensidad === 'ligero') {
+        intensidadExtra = 'Se recomienda servir bien frío y priorizar preparaciones más delicadas para no tapar el vino.';
+      } else if (intensidad === 'medio') {
+        intensidadExtra = 'Funciona bien con platos de intensidad media, donde ningún sabor domina por completo.';
+      } else if (intensidad === 'intenso') {
+        intensidadExtra = 'Tolera platos más estructurados y salsas con mayor concentración de sabor.';
+      }
+
+      return `${vinoNombre} marida muy bien con ${platoTexto}. ${intensidadExtra}`;
+    }
+
+    (function initMaridajeSimulator(){
+      const form = document.getElementById('maridaje-form');
+      const output = document.getElementById('maridaje-output');
+      const outText = document.getElementById('maridaje-text');
+      const outTag = document.getElementById('maridaje-tag');
+
+      const selWine = document.getElementById('mj-wine');
+      const selInt = document.getElementById('mj-intensity');
+      const selDish = document.getElementById('mj-dish');
+
+      // Prefill desde localStorage
+      const last = loadLastMaridaje();
+      if (last) {
+        if (last.vino) selWine.value = last.vino;
+        if (last.intensidad) selInt.value = last.intensidad;
+        if (last.plato) selDish.value = last.plato;
+        const txt = buildSuggestion(last.vino, last.intensidad, last.plato);
+        outText.textContent = txt;
+        outTag.textContent = 'Última combinación aplicada';
+        output.style.display = 'block';
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const vino = selWine.value;
+        const intensidad = selInt.value;
+        const plato = selDish.value;
+
+        const suggestion = buildSuggestion(vino, intensidad, plato);
+        outText.textContent = suggestion;
+        outTag.textContent = 'Combinación generada';
+        output.style.display = 'block';
+
+        saveLastMaridaje({ vino, intensidad, plato });
+      });
+    })();
+  </script>
 </body>
 </html>

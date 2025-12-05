@@ -8,54 +8,393 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Estilos específicos cuenta -->
+  <style>
+    .account-page {
+      padding: 32px 0 40px;
+    }
+    .account-header {
+      margin-bottom: 16px;
+    }
+    .account-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 20px;
+    }
+
+    .auth-card h2 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+    .auth-card p.subtitle {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: .85rem;
+    }
+
+    .auth-card form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: .8rem;
+    }
+
+    .auth-card label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: .8rem;
+    }
+
+    .auth-card input,
+    .auth-card select {
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.7);
+      background: rgba(15,23,42,.95);
+      color: #f9fafb;
+      padding: 7px 11px;
+      font-size: .85rem;
+      outline: none;
+    }
+
+    .auth-card input::placeholder {
+      color: rgba(148,163,184,.7);
+    }
+
+    .auth-actions {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: .78rem;
+    }
+
+    .account-type-toggle {
+      display: inline-flex;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.5);
+      padding: 2px;
+      margin-bottom: 10px;
+      background: rgba(15,23,42,.95);
+      font-size: .78rem;
+    }
+    .account-type-toggle button {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .account-type-toggle button.is-active {
+      background: linear-gradient(90deg,#f97316,#e11d48);
+      color: #0b1120;
+      font-weight: 600;
+    }
+
+    .account-forms {
+      margin-top: 4px;
+    }
+    .account-form {
+      display: none;
+    }
+    .account-form.is-active {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .account-two-cols {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 14px;
+    }
+
+    /* Errores */
+    .input-error {
+      border-color: #f97373 !important;
+      box-shadow: 0 0 0 1px rgba(248,113,113,.4);
+    }
+    .form-error {
+      margin: 2px 0 0;
+      font-size: .75rem;
+      color: #fecaca;
+    }
+    .form-success {
+      margin-top: 4px;
+      font-size: .78rem;
+      color: #bbf7d0;
+    }
+
+    @media (max-width: 960px) {
+      .account-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+    @media (max-width: 640px) {
+      .account-two-cols {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO SUPERIOR -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
-      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg></a>
-      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm6.5-.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.1V12h2.1V9.7c0-2 1.2-3.1 3-3.1.9 0 1.8.1 2 .1v2.2h-1.1c-1.1 0-1.4.7-1.4 1.4V12h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube" title="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAVBAR -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/>
+          </svg>
+        </span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+
+      <div class="search">
+        <input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos">
+      </div>
+
+  
+   <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+
       <div class="icons">
-        <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
-        <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
-        <a class="icon" href="carrito.html" aria-label="Carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/></svg></a>
+        <a class="icon" href="buscar.html" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="2"/>
+            <path d="M20 20l-3.2-3.2" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="cuenta.html" aria-label="Cuenta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="8" r="4" stroke-width="2"/>
+            <path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/>
+          </svg>
+        </a>
+        <a class="icon" href="carrito.html" aria-label="Carrito">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M6 8h12l-1 11H7L6 8z" stroke-width="2"/>
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" stroke-width="2"/>
+          </svg>
+        </a>
         <span class="badge cart" title="Productos en carrito" data-cart-count>0</span>
       </div>
     </div>
   </nav>
 
-  
-<main class="container" style="padding:34px 0">
-  <h1 class="h1 reveal">Iniciar sesión</h1>
-  <form class="card pad reveal" onsubmit="event.preventDefault(); alert('Login demo');">
-    <label>Correo<input type="email" required></label>
-    <label>Contraseña<input type="password" required></label>
-    <br><button class="btn primary" type="submit">Entrar</button>
-    <a class="btn ghost" href="clientes.html">Crear cuenta</a>
-    <a class="btn ghost" href="empresas.html">Soy empresa</a>
-  </form>
-</main>
+  <!-- CONTENIDO -->
+  <main class="container account-page">
+    <header class="account-header">
+      <h1 class="h1 reveal">Tu cuenta</h1>
+      <p class="subtitle">
+        Inicia sesión o crea tu cuenta para seguir tus pedidos, guardar direcciones y acceder a beneficios de Viña Urbana.
+      </p>
+    </header>
 
+    <section class="account-layout">
+      <!-- LOGIN -->
+      <article class="card pad reveal auth-card">
+        <h2>Iniciar sesión</h2>
+        <p class="subtitle">
+          Ingresa con tu correo y contraseña para continuar con tus compras.
+        </p>
+        <form id="login-form">
+          <label>
+            Correo electrónico
+            <input type="email" id="login-email" name="email" placeholder="tucorreo@example.com" required>
+          </label>
+          <label>
+            Contraseña
+            <input type="password" id="login-password" name="password" placeholder="Tu contraseña" required>
+          </label>
+          <p id="login-error" class="form-error"></p>
 
+          <div class="auth-actions">
+            <label style="display:flex;align-items:center;gap:6px;">
+              <input type="checkbox" id="login-remember">
+              Mantener sesión iniciada en este dispositivo.
+            </label>
+            <button class="btn primary" type="submit">Entrar</button>
+            <small>
+              ¿Olvidaste tu contraseña? <a href="#" class="link">Recupérala aquí</a> (demo).
+            </small>
+          </div>
+        </form>
+      </article>
+
+      <!-- REGISTRO CLIENTE / EMPRESA -->
+      <article class="card pad reveal auth-card">
+        <h2>Crea tu cuenta</h2>
+        <p class="subtitle">
+          Elige si quieres registrarte como <strong>cliente</strong> o como <strong>empresa</strong> (B2B).
+        </p>
+
+        <!-- Toggle tipo de cuenta -->
+        <div class="account-type-toggle">
+          <button type="button" class="is-active" data-account-type="cliente">Cliente</button>
+          <button type="button" data-account-type="empresa">Empresa</button>
+        </div>
+
+        <div class="account-forms">
+          <!-- FORM CLIENTE -->
+          <form
+            class="account-form is-active"
+            id="form-cliente"
+          >
+            <div class="account-two-cols">
+              <label>
+                Nombre
+                <input id="cliente-nombre" name="nombre" placeholder="Ej: Juan" required>
+              </label>
+              <label>
+                Apellido
+                <input id="cliente-apellido" name="apellido" placeholder="Ej: Pérez" required>
+              </label>
+              <label>
+                Correo
+                <input type="email" id="cliente-correo" name="correo" placeholder="tucorreo@example.com" required>
+              </label>
+              <label>
+                Teléfono
+                <input type="tel" id="cliente-telefono" name="telefono" placeholder="+56 9 1234 5678">
+              </label>
+            </div>
+
+            <label>
+              Contraseña
+              <input type="password" id="cliente-pass" name="password" placeholder="Mínimo 8 caracteres" required>
+            </label>
+            <label>
+              Confirmar contraseña
+              <input type="password" id="cliente-pass2" name="password2" placeholder="Repite tu contraseña" required>
+            </label>
+
+            <label>
+              Preferencias de vino
+              <select id="cliente-preferencias" name="preferencias">
+                <option>Cabernet Sauvignon</option>
+                <option>Sauvignon Blanc</option>
+                <option>Pinot Noir</option>
+                <option>Chardonnay</option>
+              </select>
+            </label>
+
+            <p id="cliente-error" class="form-error"></p>
+            <p id="cliente-success" class="form-success"></p>
+
+            <div class="auth-actions">
+              <label style="display:flex;align-items:center;gap:6px;">
+                <input type="checkbox" id="cliente-terms" required>
+                Acepto los términos, condiciones y políticas de privacidad.
+              </label>
+              <button class="btn primary" type="submit">Crear cuenta de cliente</button>
+              <small>
+                Esta cuenta es para compras personales y seguimiento de tus pedidos.
+              </small>
+            </div>
+          </form>
+
+          <!-- FORM EMPRESA -->
+          <form
+            class="account-form"
+            id="form-empresa"
+          >
+            <div class="account-two-cols">
+              <label>
+                Razón social
+                <input id="empresa-razon" name="razon_social" placeholder="Ej: Viña Los Robles SpA" required>
+              </label>
+              <label>
+                RUT empresa
+                <input id="empresa-rut" name="rut" placeholder="12.345.678-9" required>
+              </label>
+              <label>
+                Correo de contacto
+                <input type="email" id="empresa-correo" name="correo_emp" placeholder="compras@empresa.cl" required>
+              </label>
+              <label>
+                Teléfono
+                <input type="tel" id="empresa-telefono" name="telefono_emp" placeholder="+56 2 2345 6789">
+              </label>
+              <label>
+                Ciudad
+                <input id="empresa-ciudad" name="ciudad" placeholder="Santiago">
+              </label>
+              <label>
+                País
+                <input id="empresa-pais" name="pais" placeholder="Chile">
+              </label>
+            </div>
+
+            <label>
+              Giro / Rubro
+              <input id="empresa-giro" name="giro" placeholder="Restaurante, hotel, distribuidor, etc.">
+            </label>
+
+            <label>
+              Contraseña de acceso
+              <input type="password" id="empresa-pass" name="password_emp" placeholder="Mínimo 8 caracteres" required>
+            </label>
+            <label>
+              Confirmar contraseña
+              <input type="password" id="empresa-pass2" name="password_emp2" placeholder="Repite tu contraseña" required>
+            </label>
+
+            <p id="empresa-error" class="form-error"></p>
+            <p id="empresa-success" class="form-success"></p>
+
+            <div class="auth-actions">
+              <label style="display:flex;align-items:center;gap:6px;">
+                <input type="checkbox" id="empresa-terms" required>
+                Acepto términos B2B, condiciones comerciales y políticas de privacidad.
+              </label>
+              <button class="btn primary" type="submit">Crear cuenta de empresa</button>
+              <small>
+                Ideal para compras por volumen, facturación a empresa y acuerdos comerciales.
+              </small>
+            </div>
+          </form>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -69,9 +408,264 @@
       <a href="vinedos-virtual.html">Viñedos VR</a>
       <a href="maridaje-etiqueta.html">Maridaje AR</a>
     </div>
-    <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
+    <div class="footer-bottom">
+      <span>© <span id="y"></span> Viña Urbana</span>
+      <span class="footer-badge">+18 | Consume con moderación</span>
+    </div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try { runSearch(); } catch (e) {}
+
+    // Utilidades para usuarios en localStorage
+    const USERS_KEY = 'vu_users';
+    const CURRENT_USER_KEY = 'vu_current_user';
+    const LAST_LOGIN_EMAIL_KEY = 'vu_last_login_email';
+
+    function loadUsers() {
+      try {
+        const raw = localStorage.getItem(USERS_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+
+    function saveCurrentUser(user) {
+      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.form-error').forEach(el => el.textContent = '');
+      document.querySelectorAll('.form-success').forEach(el => el.textContent = '');
+      document.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+    }
+
+    // Toggle Cliente / Empresa
+    (function () {
+      const buttons = document.querySelectorAll('.account-type-toggle button');
+      const formCliente = document.getElementById('form-cliente');
+      const formEmpresa = document.getElementById('form-empresa');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+
+          const type = btn.getAttribute('data-account-type');
+          clearErrors();
+          if (type === 'cliente') {
+            formCliente.classList.add('is-active');
+            formEmpresa.classList.remove('is-active');
+          } else {
+            formEmpresa.classList.add('is-active');
+            formCliente.classList.remove('is-active');
+          }
+        });
+      });
+    })();
+
+    // Prefill último correo usado en login
+    (function () {
+      const last = localStorage.getItem(LAST_LOGIN_EMAIL_KEY);
+      const input = document.getElementById('login-email');
+      if (last && input) input.value = last;
+    })();
+
+    // Registro de cliente
+    (function () {
+      const form = document.getElementById('form-cliente');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        const nombre = document.getElementById('cliente-nombre');
+        const apellido = document.getElementById('cliente-apellido');
+        const correo = document.getElementById('cliente-correo');
+        const telefono = document.getElementById('cliente-telefono');
+        const pass = document.getElementById('cliente-pass');
+        const pass2 = document.getElementById('cliente-pass2');
+        const pref = document.getElementById('cliente-preferencias');
+        const terms = document.getElementById('cliente-terms');
+        const errorEl = document.getElementById('cliente-error');
+        const successEl = document.getElementById('cliente-success');
+
+        let hasError = false;
+
+        if (pass.value.length < 8) {
+          pass.classList.add('input-error');
+          errorEl.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+          hasError = true;
+        } else if (pass.value !== pass2.value) {
+          pass.classList.add('input-error');
+          pass2.classList.add('input-error');
+          errorEl.textContent = 'Las contraseñas no coinciden.';
+          hasError = true;
+        }
+
+        if (!terms.checked && !hasError) {
+          errorEl.textContent = 'Debes aceptar los términos y condiciones.';
+          hasError = true;
+        }
+
+        const users = loadUsers();
+        const existing = users.find(u => u.email === correo.value.trim().toLowerCase());
+        if (existing && !hasError) {
+          errorEl.textContent = 'Ya existe una cuenta registrada con ese correo.';
+          correo.classList.add('input-error');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        const newUser = {
+          id: 'u_' + Date.now(),
+          type: 'cliente',
+          nombre: nombre.value.trim(),
+          apellido: apellido.value.trim(),
+          email: correo.value.trim().toLowerCase(),
+          telefono: telefono.value.trim(),
+          password: pass.value, // solo demo
+          preferencias: pref.value,
+          createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        saveUsers(users);
+        saveCurrentUser({ email: newUser.email, type: 'cliente', nombre: newUser.nombre });
+
+        successEl.textContent = 'Cuenta de cliente creada correctamente. Ya puedes iniciar sesión.';
+        localStorage.setItem(LAST_LOGIN_EMAIL_KEY, newUser.email);
+      });
+    })();
+
+    // Registro de empresa
+    (function () {
+      const form = document.getElementById('form-empresa');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        const razon = document.getElementById('empresa-razon');
+        const rut = document.getElementById('empresa-rut');
+        const correo = document.getElementById('empresa-correo');
+        const telefono = document.getElementById('empresa-telefono');
+        const ciudad = document.getElementById('empresa-ciudad');
+        const pais = document.getElementById('empresa-pais');
+        const giro = document.getElementById('empresa-giro');
+        const pass = document.getElementById('empresa-pass');
+        const pass2 = document.getElementById('empresa-pass2');
+        const terms = document.getElementById('empresa-terms');
+        const errorEl = document.getElementById('empresa-error');
+        const successEl = document.getElementById('empresa-success');
+
+        let hasError = false;
+
+        if (pass.value.length < 8) {
+          pass.classList.add('input-error');
+          errorEl.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+          hasError = true;
+        } else if (pass.value !== pass2.value) {
+          pass.classList.add('input-error');
+          pass2.classList.add('input-error');
+          errorEl.textContent = 'Las contraseñas no coinciden.';
+          hasError = true;
+        }
+
+        if (!terms.checked && !hasError) {
+          errorEl.textContent = 'Debes aceptar los términos y condiciones B2B.';
+          hasError = true;
+        }
+
+        const users = loadUsers();
+        const existing = users.find(u => u.email === correo.value.trim().toLowerCase());
+        if (existing && !hasError) {
+          errorEl.textContent = 'Ya existe una cuenta registrada con ese correo.';
+          correo.classList.add('input-error');
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        const newUser = {
+          id: 'u_' + Date.now(),
+          type: 'empresa',
+          razonSocial: razon.value.trim(),
+          rut: rut.value.trim(),
+          email: correo.value.trim().toLowerCase(),
+          telefono: telefono.value.trim(),
+          ciudad: ciudad.value.trim(),
+          pais: pais.value.trim(),
+          giro: giro.value.trim(),
+          password: pass.value, // demo
+          createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        saveUsers(users);
+        saveCurrentUser({ email: newUser.email, type: 'empresa', razonSocial: newUser.razonSocial });
+
+        successEl.textContent = 'Cuenta de empresa creada correctamente. Ya puedes iniciar sesión como empresa.';
+        localStorage.setItem(LAST_LOGIN_EMAIL_KEY, newUser.email);
+      });
+    })();
+
+    // Login
+    (function () {
+      const form = document.getElementById('login-form');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearErrors();
+
+        const emailInput = document.getElementById('login-email');
+        const passInput = document.getElementById('login-password');
+        const remember = document.getElementById('login-remember');
+        const errorEl = document.getElementById('login-error');
+
+        const email = emailInput.value.trim().toLowerCase();
+        const pass = passInput.value;
+
+        const users = loadUsers();
+        const user = users.find(u => u.email === email);
+
+        if (!user) {
+          errorEl.textContent = 'No encontramos una cuenta con ese correo.';
+          emailInput.classList.add('input-error');
+          return;
+        }
+
+        if (user.password !== pass) {
+          errorEl.textContent = 'Contraseña incorrecta. Intenta nuevamente.';
+          passInput.classList.add('input-error');
+          return;
+        }
+
+        // Login OK
+        saveCurrentUser({
+          email: user.email,
+          type: user.type,
+          nombre: user.nombre || user.razonSocial || ''
+        });
+
+        if (remember.checked) {
+          localStorage.setItem(LAST_LOGIN_EMAIL_KEY, email);
+        }
+
+        // Redirigir (demo)
+        window.location.href = 'index3.html';
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -3,13 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registro de empresas — Viña Urbana</title>
+  <title>Empresas — Viña Urbana</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .empresas-page { padding:32px 0 40px; }
+    .empresas-header { margin-bottom:14px; }
+    .empresas-header .subtitle { margin-top:4px; font-size:.9rem; }
+
+    .empresas-layout {
+      display:grid;
+      grid-template-columns:minmax(0,1.6fr) minmax(0,1.4fr);
+      gap:18px;
+    }
+
+    .empresas-form { font-size:.82rem; }
+    .empresas-form label { font-size:.8rem; display:block; }
+    .empresas-form input,
+    .empresas-form select { width:100%; }
+
+    .empresas-msg { margin-top:6px; font-size:.78rem; }
+    .empresas-msg.error { color:#fecaca; }
+    .empresas-msg.ok { color:#bbf7d0; }
+
+    .empresas-table {
+      width:100%;
+      border-collapse:collapse;
+      font-size:.78rem;
+      margin-top:6px;
+    }
+    .empresas-table th,
+    .empresas-table td {
+      padding:4px 4px;
+      border-bottom:1px solid rgba(30,64,175,.5);
+    }
+    .empresas-table th {
+      text-align:left;
+      color:var(--text-muted);
+      font-weight:500;
+    }
+
+    .empresas-note { margin-top:6px; font-size:.75rem; color:var(--text-muted); }
+
+    @media(max-width:960px){
+      .empresas-layout { grid-template-columns:minmax(0,1fr); }
+    }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
@@ -19,21 +64,27 @@
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+      <div class="search"><input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos"></div>
+   <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
       <div class="icons">
         <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
         <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
@@ -43,26 +94,91 @@
     </div>
   </nav>
 
-  
-<main class="container" style="padding:34px 0">
-  <h1 class="h1 reveal">Registro de empresas</h1>
-  <form class="card pad reveal" onsubmit="event.preventDefault(); alert('Empresa registrada (demo)');">
-    <div class="grid cols-2">
-      <label>Razón social<input required></label>
-      <label>RUT<input required placeholder="11.111.111-1"></label>
-      <label>Giro<input></label>
-      <label>Correo de compras<input type="email" required></label>
-      <label>Teléfono<input type="tel"></label>
-      <label>Dirección<input></label>
-    </div>
-    <label>Tipo de cliente
-      <select><option>Restaurante</option><option>Hotel</option><option>Tienda gourmet</option></select>
-    </label>
-    <br><button class="btn primary" type="submit">Crear cuenta empresa</button>
-  </form>
-</main>
+  <!-- CONTENIDO -->
+  <main class="container empresas-page">
+    <header class="empresas-header">
+      <h1 class="h1 reveal">Empresas y canal Horeca</h1>
+      <p class="subtitle">
+        Registra tu empresa para acceder a listas de precios especiales, facturación y asesoría en maridajes para tu carta.
+      </p>
+    </header>
 
+    <section class="empresas-layout">
+      <!-- Formulario -->
+      <article class="card pad reveal empresas-form">
+        <h2 class="section-title">Registro de empresa</h2>
+        <form id="empresas-form">
+          <div class="grid cols-2">
+            <label>Razón social
+              <input id="emp-razon" required>
+            </label>
+            <label>RUT
+              <input id="emp-rut" placeholder="11.111.111-1" required>
+            </label>
+            <label>Nombre contacto
+              <input id="emp-contacto" required>
+            </label>
+            <label>Correo de contacto
+              <input id="emp-correo" type="email" required>
+            </label>
+            <label>Teléfono
+              <input id="emp-telefono" type="tel">
+            </label>
+            <label>Ciudad
+              <input id="emp-ciudad">
+            </label>
+          </div>
 
+          <label style="margin-top:6px;">Tipo de negocio
+            <select id="emp-tipo">
+              <option>Restaurante</option>
+              <option>Hotel</option>
+              <option>Bar / Wine bar</option>
+              <option>Tienda gourmet</option>
+              <option>Otros</option>
+            </select>
+          </label>
+
+          <label style="margin-top:6px;">Consumo estimado mensual (botellas)
+            <input id="emp-volumen" type="number" min="0" placeholder="Ej: 80">
+          </label>
+
+          <label style="margin-top:6px; display:flex;align-items:center;gap:6px;">
+            <input id="emp-condiciones" type="checkbox" required>
+            Acepto ser contactado por el equipo comercial de Viña Urbana.
+          </label>
+
+          <button class="btn primary" type="submit" style="margin-top:8px;">Enviar solicitud</button>
+          <p id="emp-msg" class="empresas-msg"></p>
+        </form>
+
+        <p class="empresas-note">
+          Tu solicitud se guarda de forma local como demostración. En un entorno real, sería enviada al equipo comercial
+          para revisión y activación de condiciones B2B.
+        </p>
+      </article>
+
+      <!-- Listado de empresas guardadas -->
+      <aside class="card pad reveal">
+        <h2 class="section-title">Solicitudes registradas (demo)</h2>
+        <table class="empresas-table">
+          <thead>
+            <tr>
+              <th>Razón social</th>
+              <th>Tipo</th>
+              <th>Ciudad</th>
+              <th>Volumen</th>
+            </tr>
+          </thead>
+          <tbody id="empresas-list">
+            <!-- Rellenado por JS -->
+          </tbody>
+        </table>
+      </aside>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -78,7 +194,103 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try { runSearch(); } catch(e) {}
+
+    const COMP_KEY = 'vu_companies';
+
+    function loadCompanies() {
+      try {
+        const raw = localStorage.getItem(COMP_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch(e){ return []; }
+    }
+    function saveCompanies(list) {
+      localStorage.setItem(COMP_KEY, JSON.stringify(list));
+    }
+
+    function renderCompanies() {
+      const tbody = document.getElementById('empresas-list');
+      const list = loadCompanies();
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 4;
+        td.textContent = 'Sin solicitudes registradas aún.';
+        td.style.color = 'var(--text-muted)';
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        return;
+      }
+      list.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${c.razon}</td>
+          <td>${c.tipo}</td>
+          <td>${c.ciudad || '-'}</td>
+          <td>${c.volumen ? c.volumen + ' bot.' : '-'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    (function initEmpresasForm(){
+      const form = document.getElementById('empresas-form');
+      const msg = document.getElementById('emp-msg');
+      renderCompanies();
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        msg.textContent = '';
+        msg.className = 'empresas-msg';
+
+        const razon = document.getElementById('emp-razon').value.trim();
+        const rut = document.getElementById('emp-rut').value.trim();
+        const contacto = document.getElementById('emp-contacto').value.trim();
+        const correo = document.getElementById('emp-correo').value.trim();
+        const tel = document.getElementById('emp-telefono').value.trim();
+        const ciudad = document.getElementById('emp-ciudad').value.trim();
+        const tipo = document.getElementById('emp-tipo').value;
+        const volumen = document.getElementById('emp-volumen').value.trim();
+        const acepta = document.getElementById('emp-condiciones').checked;
+
+        if (!acepta) {
+          msg.textContent = 'Debes aceptar ser contactado para continuar.';
+          msg.classList.add('error');
+          return;
+        }
+
+        const companies = loadCompanies();
+        const exists = companies.find(c => c.rut === rut || c.correo === correo.toLowerCase());
+        if (exists) {
+          msg.textContent = 'Ya existe una solicitud registrada con ese RUT o correo.';
+          msg.classList.add('error');
+          return;
+        }
+
+        companies.push({
+          id: 'c_' + Date.now(),
+          razon,
+          rut,
+          contacto,
+          correo: correo.toLowerCase(),
+          tel,
+          ciudad,
+          tipo,
+          volumen: volumen ? Number(volumen) : null,
+          createdAt: new Date().toISOString()
+        });
+        saveCompanies(companies);
+        renderCompanies();
+
+        msg.textContent = 'Solicitud enviada correctamente (demo).';
+        msg.classList.add('ok');
+        form.reset();
+      });
+    })();
+  </script>
 </body>
 </html>

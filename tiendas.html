@@ -8,8 +8,62 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .stores-page { padding:32px 0 40px; }
+    .stores-header { margin-bottom:14px; }
+    .stores-header .subtitle { margin-top:4px; font-size:.9rem; color:var(--text-muted); }
+
+    .stores-grid .store-img {
+      width:100%;
+      height:180px;
+      border-radius:18px;
+      object-fit:cover;
+      margin-bottom:8px;
+    }
+    .store-meta {
+      font-size:.8rem;
+      color:var(--text-muted);
+      margin-bottom:4px;
+    }
+    .store-services {
+      margin:4px 0 6px;
+      padding-left:16px;
+      font-size:.78rem;
+      color:var(--text-muted);
+    }
+    .store-services li { margin-bottom:2px; }
+
+    .store-footer {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      margin-top:4px;
+    }
+    .store-footer small {
+      font-size:.74rem;
+      color:var(--text-muted);
+    }
+
+    .stores-note {
+      margin-top:12px;
+      font-size:.78rem;
+      color:var(--text-muted);
+    }
+
+    .stores-filter {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      font-size:.8rem;
+      margin-bottom:10px;
+    }
+    .stores-filter select { min-width:180px; }
+  </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- AVISO -->
   <div class="announce">
     ENVÍO GRATIS EN RM POR COMPRAS SOBRE $50.000 <small>• 48h hábiles</small>
     <div class="social">
@@ -19,21 +73,27 @@
     </div>
   </div>
 
-  <nav class="nav">
+  <!-- NAV -->
+  <nav class="nav glass">
     <div class="container nav-row">
-      <a class="logo" href="index.html"><span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span><span>Viña Urbana</span></a>
-      <div class="search"><input placeholder="Busca por cepa, bodega, origen…"></div>
-      <div class="menu">
-      <a href="catalogo.html">Todos</a>
-      <a href="tintos.html">Tintos</a>
-      <a href="blancos.html">Blancos</a>
-      <a href="rosados.html">Rosados</a>
-      <a href="espumantes.html">Espumantes</a>
-      <a href="ofertas.html">Ofertas</a>
-      <a href="membresia.html">Club</a>
-      <a href="tiendas.html">Tiendas</a>
-      <a href="empresas.html">Empresas</a>
-    </div>
+      <a class="logo" href="index3.html">
+        <span class="logo-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10v4a5 5 0 1 1-10 0V2zm5 8c3.3 0 6-2.7 6-6H6c0 3.3 2.7 6 6 6zm-1 3v5H8v2h8v-2h-3v-5h-2z"/></svg></span>
+        <span class="logo-text">Viña <span>Urbana</span></span>
+      </a>
+      <div class="search"><input placeholder="Busca por cepa, bodega, origen…" aria-label="Buscar vinos"></div>
+  <div class="menu">
+        <a href="catalogo.html">Todos</a>
+        <a href="tintos.html">Tintos</a>
+        <a href="blancos.html">Blancos</a>
+        <a href="rosados.html">Rosados</a>
+        <a href="espumantes.html">Espumantes</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="membresia.html">Club</a>
+        <a href="tiendas.html">Tiendas</a>
+        <a href="empresas.html">Empresas</a>
+        <a href="clientes.html">Clientes</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
       <div class="icons">
         <a class="icon" href="buscar.html" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke-width="2"/></svg></a>
         <a class="icon" href="cuenta.html" aria-label="Cuenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="8" r="4" stroke-width="2"/><path d="M4 20c2-3 6-5 8-5s6 2 8 5" stroke-width="2"/></svg></a>
@@ -43,32 +103,38 @@
     </div>
   </nav>
 
-  
-<main class="container" style="padding:34px 0">
-  <h1 class="h1 reveal">Tiendas</h1>
-  <section class="grid cols-3">
-    <article class="card pad reveal">
-      <h3>Providencia</h3>
-      <p class="subtitle">Av. Providencia 1234</p>
-      <img src="assets/img/hero_wine.jpg" alt="Mapa">
-      <a class="btn ghost" href="https://maps.example/1">Ver mapa</a>
-    </article>
-    <article class="card pad reveal">
-      <h3>Las Condes</h3>
-      <p class="subtitle">Apoquindo 3456</p>
-      <img src="assets/img/cellar.jpg" alt="Mapa">
-      <a class="btn ghost" href="https://maps.example/2">Ver mapa</a>
-    </article>
-    <article class="card pad reveal">
-      <h3>Ñuñoa</h3>
-      <p class="subtitle">Irarrázaval 789</p>
-      <img src="assets/img/tasting.jpg" alt="Mapa">
-      <a class="btn ghost" href="https://maps.example/3">Ver mapa</a>
-    </article>
-  </section>
-</main>
+  <!-- CONTENIDO -->
+  <main class="container stores-page">
+    <header class="stores-header">
+      <h1 class="h1 reveal">Tiendas Viña Urbana</h1>
+      <p class="subtitle">
+        Conoce nuestras salas de venta físicas, horarios, servicios y enlaces directos a mapas para llegar fácilmente.
+      </p>
+    </header>
 
+    <section class="card pad reveal">
+      <div class="stores-filter">
+        <span>Filtrar por comuna:</span>
+        <select id="stores-filter">
+          <option value="todas">Todas</option>
+          <option value="Providencia">Providencia</option>
+          <option value="Las Condes">Las Condes</option>
+          <option value="Ñuñoa">Ñuñoa</option>
+        </select>
+      </div>
 
+      <section id="stores-grid" class="grid cols-3 stores-grid" style="margin-top:10px">
+        <!-- Rellenado por JS -->
+      </section>
+
+      <p class="stores-note">
+        En un entorno productivo, esta sección podría integrarse con Google Maps o similares para mostrar tu ubicación
+        y calcular rutas en tiempo real. Aquí se deja maquetado el estilo y la estructura.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
   <footer class="container footer">
     <div class="links">
       <a href="politicas.html">Políticas</a>
@@ -84,7 +150,100 @@
     </div>
     <div style="margin-top:6px">© <span id="y"></span> Viña Urbana</div>
   </footer>
+
   <script src="scripts.js"></script>
-  <script>try{runSearch();}catch(e){}</script>
+  <script>
+    try{ runSearch(); }catch(e){}
+
+    const CART_KEY = 'vu_cart';
+
+    const STORES = [
+      {
+        comuna:'Providencia',
+        nombre:'Viña Urbana Providencia',
+        direccion:'Av. Providencia 1234, Providencia, Santiago',
+        horario:'Lunes a sábado 11:00–21:00',
+        telefono:'+56 2 2222 1111',
+        servicios:[
+          'Sala de degustación',
+          'Retiro de compras online',
+          'Asesoría de sommelier'
+        ],
+        maps:'https://maps.google.com/?q=Providencia+1234+Santiago'
+      },
+      {
+        comuna:'Las Condes',
+        nombre:'Viña Urbana Las Condes',
+        direccion:'Av. Apoquindo 3456, Las Condes, Santiago',
+        horario:'Lunes a domingo 11:00–22:00',
+        telefono:'+56 2 2333 2222',
+        servicios:[
+          'Eventos privados y catas',
+          'Estacionamiento clientes',
+          'Club pick-up (membresía)'
+        ],
+        maps:'https://maps.google.com/?q=Apoquindo+3456+Santiago'
+      },
+      {
+        comuna:'Ñuñoa',
+        nombre:'Viña Urbana Ñuñoa',
+        direccion:'Av. Irarrázaval 789, Ñuñoa, Santiago',
+        horario:'Martes a domingo 12:00–21:00',
+        telefono:'+56 2 2444 3333',
+        servicios:[
+          'Bar de vinos por copa',
+          'Retiro de pedidos web',
+          'Talleres y charlas (demo)'
+        ],
+        maps:'https://maps.google.com/?q=Irarrázaval+789+Santiago'
+      }
+    ];
+
+    function loadCart(){
+      try{
+        const raw = localStorage.getItem(CART_KEY);
+        return raw ? JSON.parse(raw) : [];
+      }catch(e){ return []; }
+    }
+    function updateCartBadge(){
+      const badge = document.querySelector('[data-cart-count]');
+      if(!badge) return;
+      const cart = loadCart();
+      const total = cart.reduce((acc,i)=>acc+i.qty,0);
+      badge.textContent = total;
+    }
+
+    function renderStores(filterComuna){
+      const cont = document.getElementById('stores-grid');
+      cont.innerHTML = '';
+      const list = STORES.filter(s => filterComuna === 'todas' || s.comuna === filterComuna);
+      list.forEach(s => {
+        const card = document.createElement('article');
+        card.className = 'card pad reveal';
+        card.innerHTML = `
+          <img class="store-img" src="${s.image}" alt="${s.nombre}">
+          <h3>${s.nombre}</h3>
+          <p class="store-meta">${s.direccion}</p>
+          <p class="store-meta"><strong>Horario:</strong> ${s.horario}</p>
+          <p class="store-meta"><strong>Teléfono:</strong> ${s.telefono}</p>
+          <ul class="store-services">
+            ${s.servicios.map(x=>`<li>${x}</li>`).join('')}
+          </ul>
+          <div class="store-footer">
+            <a class="btn ghost" href="${s.maps}" target="_blank" rel="noopener">Ver en mapa</a>
+            <small>Tiempo estimado de despacho desde esta tienda disponible en el seguimiento de pedido.</small>
+          </div>
+        `;
+        cont.appendChild(card);
+      });
+    }
+
+    (function initStores(){
+      updateCartBadge();
+      const sel = document.getElementById('stores-filter');
+      sel.addEventListener('change', () => renderStores(sel.value));
+      renderStores('todas');
+    })();
+  </script>
 </body>
 </html>
